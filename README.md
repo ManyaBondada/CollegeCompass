@@ -10,3 +10,4 @@ Currently, two official plugins are available:
 hello from charlie
 hi from liaa
 hi
+help me
