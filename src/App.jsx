@@ -5,8 +5,11 @@ import './App.css';
 import Home from './pages/Home'; 
 import Events from './pages/Events';
 import Settings from './pages/Settings';
+import Onboarding from './pages/Onboarding';
 
 function App() {
+
+  const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(false);
 
   return (
     <>
@@ -15,7 +18,7 @@ function App() {
         <nav className="fixed bottom-0 w-full p-4 border-t border-gray-300">
           <ul className="flex justify-between w-full max-w-screen-lg mx-auto">
             <li>
-              <Link to="/" className="">Home</Link>
+              <Link to="/home" className="">Home</Link>
             </li>
             <li>
               <Link to="/events" className="">Events</Link>
@@ -28,7 +31,10 @@ function App() {
 
         <div className="flex-grow p-4">
           <Routes>
-            <Route path="/" element={<Home/>} />
+            <Route path="/" element={
+                  hasCompletedOnboarding ? <Navigate to="/home" /> : <Onboarding setHasCompletedOnboarding={setHasCompletedOnboarding}/>
+                } />
+            <Route path="/home" element={<Home/>} />
             <Route path="/events" element={<Events/>} />
             <Route path="/settings" element={<Settings/>} />
           </Routes>
