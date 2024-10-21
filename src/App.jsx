@@ -7,14 +7,13 @@ import Events from './pages/Events';
 import Settings from './pages/Settings';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
       <Router>
-      <div className="">
-        <nav className="">
-          <ul className="">
+      <div className="flex flex-col min-h-screen">
+        <nav className="fixed bottom-0 w-full p-4 border-t border-gray-300">
+          <ul className="flex justify-between w-full max-w-screen-lg mx-auto">
             <li>
               <Link to="/" className="">Home</Link>
             </li>
@@ -27,7 +26,7 @@ function App() {
           </ul>
         </nav>
 
-        <div className="">
+        <div className="flex-grow p-4">
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/events" element={<Events/>} />
