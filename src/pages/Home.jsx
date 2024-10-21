@@ -1,7 +1,13 @@
 
 const Home = () => {
     return (
-        <h1>Welcome [Name]</h1>
+        <div>
+            <h1>Welcome [Name]</h1>
+
+            <h2>Here are your tasks:</h2>
+
+        </div>
+        
 
      );
 }
