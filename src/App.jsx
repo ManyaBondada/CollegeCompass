@@ -2,9 +2,9 @@ import { useState } from 'react'
 import {Button, ButtonGroup} from "@nextui-org/react";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css'; 
-import Home from './Home'; 
-import Events from './Events';
-import Settings from './Settings';
+import Home from './pages/Home'; 
+import Events from './pages/Events';
+import Settings from './pages/Settings';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -29,9 +29,9 @@ function App() {
 
         <div className="">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/" element={<Home/>} />
+            <Route path="/events" element={<Events/>} />
+            <Route path="/settings" element={<Settings/>} />
           </Routes>
         </div>
       </div>
