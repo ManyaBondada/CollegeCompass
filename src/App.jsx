@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Events from './pages/Events';
 import Settings from './pages/Settings';
 import Onboarding from './pages/Onboarding';
+import BusMap from './pages/BusMap';
 
 function App() {
 
@@ -26,6 +27,9 @@ function App() {
             <li>
               <Link to="/settings" className="">Settings</Link>
             </li>
+            <li>
+              <Link to="/bus-map" className="">Bus Map</Link>
+            </li>
           </ul>
         </nav>
 
@@ -37,6 +41,7 @@ function App() {
             <Route path="/home" element={<Home/>} />
             <Route path="/events" element={<Events/>} />
             <Route path="/settings" element={<Settings/>} />
+            <Route path="/bus-map" element={<BusMap/>} />
           </Routes>
         </div>
       </div>
