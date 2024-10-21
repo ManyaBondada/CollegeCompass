@@ -2,29 +2,40 @@ import { useState } from 'react'
 import {Button, ButtonGroup} from "@nextui-org/react";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css'; 
-import './Home'; 
+import Home from './Home'; 
+import Events from './Events';
+import Settings from './Settings';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <h1>Vite + React</h1>
-      <div className="card">
+      <Router>
+      <div className="">
+        <nav className="">
+          <ul className="">
+            <li>
+              <Link to="/" className="">Home</Link>
+            </li>
+            <li>
+              <Link to="/events" className="">Events</Link>
+            </li>
+            <li>
+              <Link to="/settings" className="">Settings</Link>
+            </li>
+          </ul>
+        </nav>
 
-        <Button onClick={() => setCount((count) => count + 1)} color="primary"
-                style={{ backgroundColor: '#9747FF', color: 'white' }}
-        >
-          Button count is {count}
-        </Button>
-        
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <div className="">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    </Router>
     </>
   )
 }
