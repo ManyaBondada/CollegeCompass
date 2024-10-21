@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Events from './pages/Events';
 import Settings from './pages/Settings';
 import Onboarding from './pages/Onboarding';
+import ScheduleVisit from './pages/ScheduleVisit';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
             <Route path="/home" element={<Home/>} />
             <Route path="/events" element={<Events/>} />
             <Route path="/settings" element={<Settings/>} />
+            <Route path="/schedule-visit" element={<ScheduleVisit/>} />
           </Routes>
         </div>
       </div>
