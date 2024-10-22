@@ -1,4 +1,4 @@
-import {CheckboxGroup, Checkbox} from "@nextui-org/react";
+import {CheckboxGroup, Checkbox, Button} from "@nextui-org/react";
 
 const GroceryShopping = () => {
     return (
@@ -12,21 +12,39 @@ const GroceryShopping = () => {
                 >
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <Checkbox value="make-grocery-list" />
-                    <a href="/home/grocery-shopping/make-grocery-list" style={{ marginLeft: '8px', textDecoration: 'none', color: 'inherit' }}>
+                    <Button
+                        auto
+                        color="secondary"
+                        as="a"
+                        href="/home/grocery-shopping/make-grocery-list"
+                        style={{ marginLeft: '8px', backgroundColor: '#EADAFF', color: '#000' }}
+                    >
                         Make Grocery List
-                    </a>
+                    </Button>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <Checkbox value="find-stores" />
-                    <a href="/home/grocery-shopping/find-stores" style={{ marginLeft: '8px', textDecoration: 'none', color: 'inherit' }}>
+                    <Button
+                        auto
+                        color="secondary"
+                        as="a"
+                        href="/home/grocery-shopping/find-stores"
+                        style={{ marginLeft: '8px', backgroundColor: '#EADAFF', color: '#000' }}
+                    >
                         Find Stores Near Me
-                    </a>
+                    </Button>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <Checkbox value="schedule-visit" />
-                    <a href="/home/grocery-shopping/schedule-visit" style={{ marginLeft: '8px', textDecoration: 'none', color: 'inherit' }}>
+                    <Button
+                        auto
+                        color="secondary"
+                        as="a"
+                        href="/home/grocery-shopping/schedule-visit"
+                        style={{ marginLeft: '8px', backgroundColor: '#EADAFF', color: '#000' }}
+                    >
                         Schedule Visit
-                    </a>
+                    </Button>
                 </div>
             </CheckboxGroup>
         </>

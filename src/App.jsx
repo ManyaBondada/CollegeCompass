@@ -28,9 +28,6 @@ function App() {
             <li>
               <Link to="/settings" className="">Settings</Link>
             </li>
-            {/* <li>
-              <Link to="/bus-map" className="">Bus Map</Link>
-            </li> */}
           </ul>
         </nav>
 
@@ -42,7 +39,6 @@ function App() {
             <Route path="/home" element={<Home/>} />
             <Route path="/events" element={<Events/>} />
             <Route path="/settings" element={<Settings/>} />
-            {/* <Route path="/bus-map" element={<BusMap/>} /> */}
             <Route path="/home/grocery-shopping" element={<GroceryShopping/>} />
           </Routes>
         </div>
