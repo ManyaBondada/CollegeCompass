@@ -5,7 +5,6 @@ const GroceryShopping = () => {
         <>
             <h1 style={{ fontSize: 'clamp(25px, 11vw, 48px)' }}>Grocery Shopping</h1>
             <br></br>
-            <h2></h2>
             <CheckboxGroup
                 label="Steps to Complete"
                 color="secondary"
