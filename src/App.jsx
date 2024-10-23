@@ -43,7 +43,7 @@ function App() {
             <Route path="/settings" element={<Settings/>} />
             <Route path="/home/grocery-shopping" element={<GroceryShopping/>} />
             <Route path="/home/grocery-shopping/make-grocery-list" element={<GroceryList/>} />
-            <Route path="/schedule-visit" element={<ScheduleVisit/>} />
+            <Route path="/home/grocery-shopping/schedule-visit" element={<ScheduleVisit/>} />
           </Routes>
         </div>
       </div>
