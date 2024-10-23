@@ -10,7 +10,7 @@ const Home = () => {
         {
             title: "Task 2: Sign up for an event",
             description: "Get ready to meet some new people 🎉",
-            route: "home/events"
+            route: "/events"
         },
     ];
 

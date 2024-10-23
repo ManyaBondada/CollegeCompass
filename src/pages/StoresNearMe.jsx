@@ -12,6 +12,7 @@ const StoresNearMe = () => {
   return (
     <div>
       <h1>Stores Near Me</h1>
+      <br></br>
       <h2>Stores in your area</h2>
 
       {stores.map((store, index) => (
@@ -21,7 +22,8 @@ const StoresNearMe = () => {
             style={{
               height: '85px',
               width: '350px',
-              backgroundColor: 'secondary',
+              backgroundColor: '#EADAFF', 
+              color: '#000',
               borderRadius: '10px',
               fontSize: '30px',
               paddingRight: '150px',
@@ -34,7 +36,7 @@ const StoresNearMe = () => {
               marginTop: '20px'
             }}
           >
-            <span style={{ fontWeight: 'bold' }}>{store.name}</span>
+            <span>{store.name}</span>
             <span style={{ fontSize: '15px', marginTop: '5px' }}>{store.address}</span>
           </Button>
         </Link>

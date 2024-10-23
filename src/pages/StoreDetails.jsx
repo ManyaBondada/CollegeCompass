@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
-import NavigationButton from '../pages/NavigationButton'; // Import the button component
+import { Button } from '@nextui-org/react';
+
 
 const StoreDetails = () => {
   // Get the store ID from the URL
@@ -40,18 +41,42 @@ const StoreDetails = () => {
   }
 
   return (
-    <div>
+    <>
+
       <h1>{store.name}</h1>
+      <br></br>
+
       <h2>{store.address}</h2>
       <div style={{ marginTop: '20px' }}>
-      <p>{store.distance}</p>
-      <p>{store.hours}</p>
-      <p>{store.services}</p>
-      <p>{store.phone}</p>
-    </div>
-      <NavigationButton link="/bus-schedule" label="Check Bus Schedule" />
-      <NavigationButton link="/home/grocery-shopping" label="Return to Grocery Tasks" />
-    </div>
+        <p>{store.distance}</p>
+        <p>{store.hours}</p>
+        <p>{store.services}</p>
+        <p>{store.phone}</p>
+      </div>
+      <br></br>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Button
+            auto
+            as="a"
+            href="/bus-schedule"
+            style={{ backgroundColor: '#EADAFF', color: '#000' }}
+        >
+            Check Bus Schedule
+        </Button>
+      </div>
+      <br></br>
+      <div>
+        <Button
+            auto
+            as="a"
+            href="/home/grocery-shopping"
+            style={{ backgroundColor: '#EADAFF', color: '#000' }}
+        >
+            Return to Grocery Tasks
+        </Button>
+      </div>
+
+    </>
   );
 };
 
