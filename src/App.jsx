@@ -9,6 +9,7 @@ import Onboarding from './pages/Onboarding';
 import BusMap from './pages/BusMap';
 import GroceryShopping from './pages/GroceryShopping';
 import GroceryList from './pages/GroceryList';
+import ScheduleVisit from './pages/ScheduleVisit';
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/settings" element={<Settings/>} />
             <Route path="/home/grocery-shopping" element={<GroceryShopping/>} />
             <Route path="/home/grocery-shopping/make-grocery-list" element={<GroceryList/>} />
+            <Route path="/home/grocery-shopping/schedule-visit" element={<ScheduleVisit/>} />
           </Routes>
         </div>
       </div>
