@@ -5,12 +5,10 @@ const NavigationButton = ({ link, label }) => {
   return (
     <Link to={link}>
       <Button
-        color="secondary"
+        radius="full"
         style={{
           height: '50px',
-          width: '200px',
-          backgroundColor: 'secondary',
-          borderRadius: '10px',
+          width: '100px',
           fontSize: '16px',
           marginTop: '20px'
         }}

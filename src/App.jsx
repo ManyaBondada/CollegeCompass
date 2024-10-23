@@ -13,6 +13,7 @@ import GroceryList from './pages/GroceryList';
 import ScheduleVisit from './pages/ScheduleVisit';
 import StoresNearMe from './pages/StoresNearMe';
 import StoreDetails from './pages/StoreDetails';
+import EventsNearMe from './pages/EventsNearMe';
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
                 } />
             <Route path="/home" element={<Home/>} />
             <Route path="/events" element={<Events/>} />
+            <Route path="/events/events-near-me" element={<EventsNearMe/>} />
             <Route path="/settings" element={<Settings/>} />
             <Route path="/home/grocery-shopping" element={<GroceryShopping/>} />
             <Route path="/home/grocery-shopping/make-grocery-list" element={<GroceryList/>} />
