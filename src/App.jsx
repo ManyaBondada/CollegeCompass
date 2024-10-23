@@ -11,9 +11,13 @@ import GroceryShopping from './pages/GroceryShopping';
 import GroceryList from './pages/GroceryList';
 ////
 import ScheduleVisit from './pages/ScheduleVisit';
+<<<<<<< HEAD
 ////
 import StoresNearMe from './pages/StoresNearMe';
 /////
+=======
+import StoresNearMe from './pages/StoresNearMe';
+>>>>>>> liaa
 import StoreDetails from './pages/StoreDetails';
 
 function App() {
