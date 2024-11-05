@@ -1,70 +1,81 @@
 import { useNavigate } from "react-router-dom";
-import {Input} from "@nextui-org/react";
-import {CheckboxGroup, Checkbox} from "@nextui-org/react";
-import {Button} from "@nextui-org/react";
-import {RadioGroup, Radio} from "@nextui-org/react";
+import { useState, useEffect } from "react";
+import { Input, CheckboxGroup, Checkbox, Button, RadioGroup, Radio } from "@nextui-org/react";
 
-const Onboarding = ({setHasCompletedOnboarding}) => {
+const Onboarding = ({ setHasCompletedOnboarding }) => {
+    const navigate = useNavigate();
+    const [name, setName] = useState("");
 
-    const navigate = useNavigate(); 
+    // Load the name from local storage on component mount
+    useEffect(() => {
+        const savedName = localStorage.getItem("userName");
+        if (savedName) {
+            setName(savedName);
+        }
+    }, []);
+
+    // Save the name to local storage whenever it changes
+    const handleNameChange = (e) => {
+        const newName = e.target.value;
+        setName(newName);
+        localStorage.setItem("userName", newName);
+    };
 
     const handleFinishOnboarding = () => {
         console.log("Onboarding finished!");
-        // setHasCompletedOnboarding(true);  // TODO: handle a state change?
-        navigate('/home', {replace: true});
+        setHasCompletedOnboarding(true);
+        navigate('/home', { replace: true });
     };
 
     return (
-        <div clasName="flex flex-col justify-between min-h-screen">
-            <h1>Welcome Name</h1>
-            <br className="" />
+        <div className="flex flex-col justify-between h-[calc(100vh-80px)] p-4 space-y-6">
+            <h1 className="text-2xl font-bold">Welcome, {name || "Guest"}!</h1>
             <p>Let's set up your account!</p>
-            <br className="" />
-            <p className="font-bold"> Where are you moving from? </p>
-            <br className="" />
-            <Input type="" label="" />
-            <br className="" />
-            <p className="font-bold"> What are you interested in? </p>
-            <br className="" />
-            <CheckboxGroup
-                label="Select interests"
-                orientation="horizontal"
-                color="secondary"
-                >
-                <Checkbox value="cooking">Cooking</Checkbox>
-                <Checkbox value="arts-crafts">Arts & Crafts</Checkbox>
-                <Checkbox value="gaming">Gaming</Checkbox>
-                <Checkbox value="travel">Travel</Checkbox>
-                <Checkbox value="sports">Sports</Checkbox>
-            </CheckboxGroup>
-            <br className="" />
-            <p className="font-bold"> What year in school are you? </p>
-            <br className="" />
-            <RadioGroup
-                label="Select a year"
-                orientation="horizontal"
-                color="secondary"
-                >
-                <Radio value="undergraduate">Undergrad</Radio>
-                <Radio value="masters">Masters</Radio>
-                <Radio value="phd">PhD</Radio>
-            </RadioGroup>
-            <br className="" />
-            <br className="" />
-            <br className="" />
-            <br className="" />
-            <br className="" />
-            <div className="flex justify-center">
-                <Button 
-                    radius="full" 
+
+            <div>
+                <p className="font-bold">What's your name?</p>
+                <Input 
+                    placeholder="Enter your name" 
+                    value={name} 
+                    onChange={handleNameChange}
+                />
+            </div>
+
+            <div>
+                <p className="font-bold">Where are you moving from?</p>
+                <Input placeholder="Enter your previous location" />
+            </div>
+
+            <div>
+                <p className="font-bold">What are you interested in?</p>
+                <CheckboxGroup label="Select interests" orientation="horizontal" color="secondary">
+                    <Checkbox value="cooking">Cooking</Checkbox>
+                    <Checkbox value="arts-crafts">Arts & Crafts</Checkbox>
+                    <Checkbox value="gaming">Gaming</Checkbox>
+                    <Checkbox value="travel">Travel</Checkbox>
+                    <Checkbox value="sports">Sports</Checkbox>
+                </CheckboxGroup>
+            </div>
+
+            <div>
+                <p className="font-bold">What year in school are you?</p>
+                <RadioGroup label="Select a year" orientation="horizontal" color="secondary">
+                    <Radio value="undergraduate">Undergrad</Radio>
+                    <Radio value="masters">Masters</Radio>
+                    <Radio value="phd">PhD</Radio>
+                </RadioGroup>
+            </div>
+
+            <div className="mt-auto flex justify-center pb-16">
+                <Button
                     onClick={handleFinishOnboarding}
-                    >
+                    style={{ backgroundColor: '#EADAFF', color: '#000' }}
+                >
                     Submit
                 </Button>
             </div>
-            
         </div>
     );
-}
- 
+};
+
 export default Onboarding;

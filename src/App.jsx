@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {Button, ButtonGroup} from "@nextui-org/react";
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import './App.css'; 
 import Home from './pages/Home'; 
 import Events from './pages/Events';

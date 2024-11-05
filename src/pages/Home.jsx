@@ -1,8 +1,18 @@
 import { Button } from '@nextui-org/react';
-
+import { useEffect, useState } from 'react';
 import {Input} from "@nextui-org/react";
 
 const Home = () => {
+    const [userName, setUserName] = useState('');
+    
+    useEffect(() => {
+        // Retrieve the user's name from local storage
+        const name = localStorage.getItem('userName');
+        if (name) {
+            setUserName(name);
+        }
+    }, []); 
+
     const tasks = [
         {
             title: "Task 1: Get groceries",
@@ -18,7 +28,7 @@ const Home = () => {
 
     return (
         <>
-            <h1>Welcome [Name]</h1>
+            <h1>Welcome {userName || "Guest"}</h1>
             <br />
             <h2>Here are your tasks</h2>
             <br />
