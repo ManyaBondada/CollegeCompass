@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { Checkbox, Button, Input } from '@nextui-org/react';
 
-
-
 const ScheduleVisit = () => {
   const [selectedDate, setSelectedDate] = useState(""); 
   const [phoneReminder, setPhoneReminder] = useState(false); 
