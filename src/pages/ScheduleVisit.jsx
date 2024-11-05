@@ -4,13 +4,12 @@ import { Checkbox, Button, Input } from '@nextui-org/react';
 
 
 const ScheduleVisit = () => {
-  const [selectedDate, setSelectedDate] = useState(""); // Stores the selected date
-  const [phoneReminder, setPhoneReminder] = useState(false); // Checkbox state for phone reminder
-  const [emailReminder, setEmailReminder] = useState(false); // Checkbox state for email reminder
-  const [phoneNumber, setPhoneNumber] = useState(""); // Stores phone number if phone reminder is checked
-  const [emailAddress, setEmailAddress] = useState(""); // Stores email address if email reminder is checked
+  const [selectedDate, setSelectedDate] = useState(""); 
+  const [phoneReminder, setPhoneReminder] = useState(false); 
+  const [emailReminder, setEmailReminder] = useState(false); 
+  const [phoneNumber, setPhoneNumber] = useState(""); 
+  const [emailAddress, setEmailAddress] = useState(""); 
 
-  // Handle form submission
   const handleSubmit = (e) => {
       e.preventDefault();
       const formData = {
@@ -21,7 +20,6 @@ const ScheduleVisit = () => {
           emailAddress: emailReminder ? emailAddress : ""
       };
       console.log("Form Data:", formData);
-      // You can process the form data here (e.g., send to an API)
   };
 
   return (
@@ -45,10 +43,9 @@ const ScheduleVisit = () => {
                     <h3>Set Reminder</h3>
                     <br></br>
 
-                    {/* Phone Reminder Checkbox */}
                     <Checkbox
                         isSelected={phoneReminder}
-                        onChange={() => setPhoneReminder(!phoneReminder)} // Toggle state
+                        onChange={() => setPhoneReminder(!phoneReminder)}
                     >
                         Phone
                     </Checkbox>
@@ -65,10 +62,9 @@ const ScheduleVisit = () => {
 
                     <br></br>
 
-                    {/* Email Reminder Checkbox */}
                     <Checkbox
                         isSelected={emailReminder}
-                        onChange={() => setEmailReminder(!emailReminder)} // Toggle state
+                        onChange={() => setEmailReminder(!emailReminder)} 
                         style={{ marginTop: '20px' }}
                     >
                         Email
