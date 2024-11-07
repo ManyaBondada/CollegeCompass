@@ -34,18 +34,17 @@ const EventsNearMe = () => {
 
     return ( 
       <div className="flex flex-col h-screen">
-            <h1 className="text-left p-1">Events Near Me</h1>
-            <br></br>
+            <h1 className="text-left p-2">Events Near Me</h1>
             
-            <div className="flex-grow overflow-y-auto px-4" style={{ maxHeight: 'calc(100vh - 120px)' }}>
-                <div className="w-full">
+            <div className="flex-grow relative">
+                <div className="absolute top-0 left-0 right-0 bottom-24 overflow-y-auto px-4">
                     {filteredEvents.length > 0 ? (
                         filteredEvents.map((event) => (
                             <Link key={event.id} to={`/events/${event.id}`} className="block w-full mb-4">
                                 <Button
                                     color="secondary"
                                     style={{
-                                        width: '350px',
+                                        width: '100%',
                                         height: '90px',
                                         backgroundColor: '#EADAFF',
                                         color: '#000',

@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Button, Input,  } from '@nextui-org/react';
+import { Button, Input, DatePicker } from '@nextui-org/react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
 const ScheduleVisit = () => {
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
   const [contactMethod, setContactMethod] = useState(""); 
   const [phoneNumber, setPhoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
@@ -31,17 +31,16 @@ const ScheduleVisit = () => {
       
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '20px' }}>
-          <Input
-            type="date"
+        <DatePicker
             value={selectedDate}
-            onChange={(e) => setSelectedDate(e.target.value)}
-            labelPlaceholder="Pick a Date"
+            onChange={(date) => setSelectedDate(date)}
+            placeholder="Pick a Date"
             fullWidth
           />
         </div>
 
         <div style={{ marginBottom: '20px' }}>
-          <h2 className = "mb-2">Choose Contact Method</h2>
+          <h2 className="mb-2">Choose Contact Method</h2>
 
           <Button
             onClick={() => handleContactToggle("phone")}
@@ -108,7 +107,7 @@ const ScheduleVisit = () => {
           }}
         >
           <h4 style={{ fontSize: '20px', marginBottom: '20px' }}>Confirmation</h4>
-          <p style={{ marginBottom: '20px' }}>Your visit has been scheduled for {selectedDate}</p>
+          <p style={{ marginBottom: '20px' }}>Your visit has been scheduled for {selectedDate ? selectedDate.toString() : "No date selected"}</p>
           {contactMethod === "phone" && <p>Phone Number: {phoneNumber}</p>}
           {contactMethod === "email" && <p>Email Address: {emailAddress}</p>}
           <p style={{ marginTop: '20px' }}>Closing this message will redirect you back to the homepage</p>
