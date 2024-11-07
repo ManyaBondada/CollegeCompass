@@ -35,6 +35,7 @@ const EventsNearMe = () => {
     return ( 
       <div className="flex flex-col h-screen">
             <h1 className="text-left p-1">Events Near Me</h1>
+            <br></br>
             
             <div className="flex-grow overflow-y-auto px-4" style={{ maxHeight: 'calc(100vh - 120px)' }}>
                 <div className="w-full">
