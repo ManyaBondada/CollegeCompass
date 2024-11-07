@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Checkbox, CheckboxGroup, Button, Input } from '@nextui-org/react';
 
 const GroceryList = () => {
@@ -6,12 +6,39 @@ const GroceryList = () => {
     const [newItem, setNewItem] = useState(""); // Stores the new item typed into the input
     const [checkedItems, setCheckedItems] = useState([]);
 
-    // handle adding a new item to the grocery list
+    // Load grocery list from localStorage when the component mounts
+    useEffect(() => {
+        const savedItems = JSON.parse(localStorage.getItem("groceryItems")) || [];
+        const savedCheckedItems = JSON.parse(localStorage.getItem("checkedItems")) || [];
+        console.log('Loaded from localStorage:', savedItems, savedCheckedItems);
+        setGroceryItems(savedItems);
+        setCheckedItems(savedCheckedItems);
+    }, []);
+
+    // Save grocery items and checked items to localStorage whenever they change
+    useEffect(() => {
+        if (groceryItems.length > 0 || checkedItems.length > 0) {
+            console.log('Saving to localStorage:', groceryItems, checkedItems);
+            localStorage.setItem("groceryItems", JSON.stringify(groceryItems));
+            localStorage.setItem("checkedItems", JSON.stringify(checkedItems));
+        }
+    }, [groceryItems, checkedItems]);
+    
+    // Handle adding a new item to the grocery list
     const handleAddItem = () => {
         if (newItem.trim() !== "") {
-            setGroceryItems([...groceryItems, newItem]);
-            setNewItem("");
+            setGroceryItems((prevItems) => [...prevItems, newItem]);
+            setNewItem(""); // Clear the input field
         }
+    };
+
+    // Clear the entire grocery list and localStorage
+    const handleClearAll = () => {
+        setGroceryItems([]);
+        setCheckedItems([]);
+        // Remove from local storage
+        localStorage.removeItem("groceryItems");
+        localStorage.removeItem("checkedItems");
     };
 
     // Handle checkbox toggle and apply/remove strikethrough
@@ -63,6 +90,18 @@ const GroceryList = () => {
                     </div>
                 ))}
             </CheckboxGroup>
+
+            {/* Conditionally display the "Clear All" button */}
+            {groceryItems.length > 0 && (
+                <div style={{ marginTop: '20px' }}>
+                    <Button
+                        onClick={handleClearAll}
+                        style={{ backgroundColor: '#FF6B6B', color: '#fff' }}
+                    >
+                        Clear All
+                    </Button>
+                </div>
+            )}
         </>
     );
 };
