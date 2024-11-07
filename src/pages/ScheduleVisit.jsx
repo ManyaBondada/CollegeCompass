@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Button, Input } from '@nextui-org/react';
+import { Button, Input, DatePicker } from '@nextui-org/react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
 const ScheduleVisit = () => {
-  const [selectedDate, setSelectedDate] = useState("");
-  const [contactMethod, setContactMethod] = useState(""); // Tracks if phone or email is selected
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [contactMethod, setContactMethod] = useState(""); 
   const [phoneNumber, setPhoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -26,23 +26,22 @@ const ScheduleVisit = () => {
   return (
     <>
       <h1 style={{ fontSize: 'clamp(25px, 11vw, 48px)' }}>Schedule Visit</h1>
+      <br></br>
       <h2>Pick a date to go grocery shopping!</h2>
       
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '20px' }}>
-          <Input
-            type="date"
+        <DatePicker
             value={selectedDate}
-            onChange={(e) => setSelectedDate(e.target.value)}
-            labelPlaceholder="Pick a Date"
+            onChange={(date) => setSelectedDate(date)}
+            placeholder="Pick a Date"
             fullWidth
           />
         </div>
 
         <div style={{ marginBottom: '20px' }}>
-          <h3>Choose Contact Method</h3>
+          <h2 className="mb-2">Choose Contact Method</h2>
 
-          {/* Phone Button */}
           <Button
             onClick={() => handleContactToggle("phone")}
             style={{
@@ -55,7 +54,6 @@ const ScheduleVisit = () => {
             📞 Phone
           </Button>
 
-          {/* Email Button */}
           <Button
             onClick={() => handleContactToggle("email")}
             style={{
@@ -68,7 +66,6 @@ const ScheduleVisit = () => {
             ✉️ Email
           </Button>
 
-          {/* Input Field for Phone or Email with spacing */}
           <div style={{ marginTop: '20px' }}>
             {contactMethod === "phone" && (
               <Input
@@ -97,7 +94,6 @@ const ScheduleVisit = () => {
         </Button>
       </form>
 
-      {/* Confirmation Popup */}
       <Popup open={isPopupOpen} onClose={closePopup} modal>
         <div
           style={{
@@ -111,7 +107,7 @@ const ScheduleVisit = () => {
           }}
         >
           <h4 style={{ fontSize: '20px', marginBottom: '20px' }}>Confirmation</h4>
-          <p style={{ marginBottom: '20px' }}>Your visit has been scheduled for {selectedDate}</p>
+          <p style={{ marginBottom: '20px' }}>Your visit has been scheduled for {selectedDate ? selectedDate.toString() : "No date selected"}</p>
           {contactMethod === "phone" && <p>Phone Number: {phoneNumber}</p>}
           {contactMethod === "email" && <p>Email Address: {emailAddress}</p>}
           <p style={{ marginTop: '20px' }}>Closing this message will redirect you back to the homepage</p>
