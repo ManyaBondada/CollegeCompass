@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {Button, ButtonGroup} from "@nextui-org/react";
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import './App.css'; 
 import Home from './pages/Home'; 
 import Events from './pages/Events';
@@ -14,6 +14,7 @@ import ScheduleVisit from './pages/ScheduleVisit';
 import StoresNearMe from './pages/StoresNearMe';
 import StoreDetails from './pages/StoreDetails';
 import EventsNearMe from './pages/EventsNearMe';
+import EventDetails from './pages/EventDetails';
 
 function App() {
 
@@ -22,8 +23,8 @@ function App() {
   return (
     <>
       <Router>
-      <div className="flex flex-col min-h-screen">
-        <nav className="fixed bottom-0 w-full p-4 border-t border-gray-300">
+      <div className="flex flex-col min-h-screen overflow-x-hidden">
+        <nav className="fixed bottom-0 left-0 w-full max-w-screen overflow-x-hidden p-4 border-t border-gray-300">
           <ul className="flex justify-between w-full max-w-screen-lg mx-auto">
             <li>
               <Link to="/home" className="">Home</Link>
@@ -52,6 +53,7 @@ function App() {
             <Route path="/home/grocery-shopping/find-stores" element={<StoresNearMe/>} />
             <Route path="/find-stores/:storeId" element={<StoreDetails />} />
             <Route path="/bus-schedule" element={<BusMap />} />
+            <Route path="/events/:eventId" element={<EventDetails />} /> 
           </Routes>
         </div>
       </div>
