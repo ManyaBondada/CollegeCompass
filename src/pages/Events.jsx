@@ -5,7 +5,7 @@ import { Button} from "@nextui-org/react";
 import { useState } from "react";
 
 const Events = () => {
-    const [selectedCulture, setSelectedCulture] = useState("");
+    const [selectedCultures, setSelectedCultures] = useState([]);
 
     const cultures = [
         { value: "chinese", label: "Chinese 🇨🇳" },
@@ -18,7 +18,11 @@ const Events = () => {
     ];
     
     const handleCultureToggle = (culture) => {
-        setSelectedCulture((prev) => (prev === culture ? "" : culture));
+        setSelectedCultures((prev) => 
+            prev.includes(culture) 
+                ? prev.filter((c) => c !== culture) 
+                : [...prev, culture]
+        );
     };
 
     return (
@@ -58,8 +62,8 @@ const Events = () => {
                             key={culture.value}
                             onClick={() => handleCultureToggle(culture.value)}
                             style={{
-                                backgroundColor: selectedCulture === culture.value ? '#EADAFF' : '#f9f9f9',
-                                color: selectedCulture === culture.value ? '#000' : '#666',
+                                backgroundColor: selectedCultures.includes(culture.value) ? '#EADAFF' : '#f9f9f9',
+                                color: selectedCultures.includes(culture.value) ? '#000' : '#666',
                                 border: '1px solid #ccc',
                                 margin: '0 4px',
                             }}
@@ -70,11 +74,11 @@ const Events = () => {
                 </div>
             </div>
 
-            <div className="mt-auto flex justify-center pb-16">
+            <div className="mt-auto flex justify-left pb-16">
                 <Button
                     auto
                     as="a"
-                    href="/events/events-near-me"
+                    href={`/events/events-near-me?cultures=${selectedCultures}`}
                     style={{ backgroundColor: '#EADAFF', color: '#000' }}
                 >
                     Submit
