@@ -9,7 +9,6 @@ import Onboarding from './pages/Onboarding';
 import BusMap from './pages/BusMap';
 import GroceryShopping from './pages/GroceryShopping';
 import GroceryList from './pages/GroceryList';
-////
 import ScheduleVisit from './pages/ScheduleVisit';
 import StoresNearMe from './pages/StoresNearMe';
 import StoreDetails from './pages/StoreDetails';
@@ -23,8 +22,8 @@ function App() {
     <>
       <Router>
       <div className="flex flex-col min-h-screen overflow-x-hidden">
-        <nav className="fixed bottom-0 left-0 w-full max-w-screen overflow-x-hidden p-4 border-t border-gray-300">
-          <ul className="flex justify-between w-full max-w-screen-lg mx-auto">
+        <nav className="fixed bottom-0 left-0 w-full max-w-screen overflow-x-hidden p-4 border-t border-gray-300 z-10">
+          <ul className="flex justify-between w-full max-w-screen-lg mx-auto z-10">
             <li>
               <Link to="/home" className="">Home</Link>
             </li>
@@ -52,6 +51,7 @@ function App() {
             <Route path="/home/grocery-shopping/find-stores" element={<StoresNearMe/>} />
             <Route path="/find-stores/:storeId" element={<StoreDetails />} />
             <Route path="/bus-schedule" element={<BusMap />} />
+            {/* <Route path="/events/:eventId" element={<EventDetails />} />  */}
           </Routes>
         </div>
       </div>
