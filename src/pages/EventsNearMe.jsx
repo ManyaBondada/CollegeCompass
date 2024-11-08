@@ -26,7 +26,6 @@ const EventsNearMe = () => {
         { id: 15, name: "French Film Festival", details: "December 6th, 2024 (5-8 PM)", culture: "french"},
         { id: 16, name: "Holi Color Festival", details: "March 8th, 2024", culture: "indian"},
         { id: 17, name: "Bollywood Dance Workshop", details: "November 19th, 2024 (4-6 PM)", culture: "indian"}
-        // Add more events here as needed...
     ];
 
     // Filter events based on selected cultures
