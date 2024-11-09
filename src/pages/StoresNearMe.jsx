@@ -16,19 +16,45 @@ const StoresNearMe = () => {
   ];
 
   const [zipCode, setZipCode] = useState("");
+  const [showResults, setShowResults] = useState(false);
+
+  // Checks whether user zip code input is valid
+  const isValidZipCode = (code) => /^\d{5}$/.test(code);
+
+  const handleSubmit = () => {
+    if (isValidZipCode(zipCode)) {
+      setShowResults(true);
+    } else {
+      alert("Please enter a valid 5-digit zip code.");
+    }
+  };
+
 
   return (
     <div>
       <BackButton/>
       <h1>Stores Near Me</h1>
       <br></br>
-      <div>
+       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <Input 
           placeholder="Enter zip code" 
           className="w-full" 
-          onChange={(e) => setZipCode(e.target.value)} />
+          value={zipCode} 
+          onChange={(e) => {
+            setZipCode(e.target.value);
+            setShowResults(false); // Reset results on new input
+          }} 
+        />
+        <Button 
+          style={{ backgroundColor: '#EADAFF', color: '#000' }}
+          onClick={handleSubmit}>
+          Submit
+        </Button>
       </div>
       <br />
+
+
+
       <div>
           <p className="font-bold">Radius</p>
           <Slider
@@ -43,7 +69,7 @@ const StoresNearMe = () => {
       </div>
       <br />
 
-      {zipCode && (
+      {showResults && (
         <div>
           <p>Stores in your area</p>
           {stores.map((store, index) => (
