@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { Button } from '@nextui-org/react';
 import { useState } from 'react';
+import BackButton from './BackButton';
 
 // Event data
 const eventData = {
@@ -143,6 +144,7 @@ const EventDetails = () => {
 
   return (
     <>
+      <BackButton/>
       <h1>{event.name}</h1>
       <br />
       <h2>Date: {event.date}</h2>

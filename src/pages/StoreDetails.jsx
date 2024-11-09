@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { Button } from '@nextui-org/react';
+import BackButton from './BackButton';
 
 
 const StoreDetails = () => {
@@ -42,7 +43,7 @@ const StoreDetails = () => {
 
   return (
     <>
-
+      <BackButton/>
       <h1>{store.name}</h1>
       <br></br>
 

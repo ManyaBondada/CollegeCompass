@@ -15,6 +15,7 @@ import StoreDetails from './pages/StoreDetails';
 import EventsNearMe from './pages/EventsNearMe';
 import EventDetails from './pages/EventDetails'; 
 
+
 function App() {
 
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(false);

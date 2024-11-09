@@ -3,6 +3,7 @@ import { Slider } from "@nextui-org/slider";
 import { DateRangePicker } from "@nextui-org/date-picker";
 import { Button} from "@nextui-org/react";
 import { useState } from "react";
+import BackButton from "./BackButton";
 
 const Events = () => {
     const [selectedCultures, setSelectedCultures] = useState([]);
@@ -26,6 +27,8 @@ const Events = () => {
     };
 
     return (
+      <>
+      <BackButton/>
       <div className="flex flex-col h-screen">
         <h1>Find an Event</h1>
         <div className="flex flex-col justify-between h-[calc(100vh-80px)] p-4 space-y-5">
@@ -87,6 +90,7 @@ const Events = () => {
           </div>
         </div>
       </div>
+      </>
     );
 }
 

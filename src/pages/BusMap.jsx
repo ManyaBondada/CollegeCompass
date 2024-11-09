@@ -1,8 +1,12 @@
 import busMap from '../assets/bus-map.png';
+import BackButton from './BackButton';
+
 
 const BusMap = () => {
+
     return (
         <>
+            <BackButton/>
             <h1>Bus Schedule</h1>
             <br></br>
             <h2>Comet Cruiser</h2>

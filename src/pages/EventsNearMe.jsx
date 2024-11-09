@@ -1,6 +1,7 @@
 import { Button } from "@nextui-org/react";
 import { Link, useLocation } from 'react-router-dom';
 import NavigationButton from './NavigationButton';
+import BackButton from "./BackButton";
 
 const EventsNearMe = () => {
     const location = useLocation();
@@ -32,6 +33,8 @@ const EventsNearMe = () => {
     const filteredEvents = events.filter(event => selectedCultures.includes(event.culture));
 
     return ( 
+      <>
+      <BackButton/>
       <div className="flex flex-col h-screen">
             <h1 className="text-left p-2">Events Near Me</h1>
             
@@ -68,6 +71,7 @@ const EventsNearMe = () => {
                 </div>
             </div>
         </div> 
+        </>
     );
 }
  

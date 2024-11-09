@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button, Input, DatePicker } from '@nextui-org/react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import BackButton from './BackButton';
 
 const ScheduleVisit = () => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -25,6 +26,8 @@ const ScheduleVisit = () => {
 
   return (
     <>
+
+      <BackButton/>
       <h1 style={{ fontSize: 'clamp(25px, 11vw, 48px)' }}>Schedule Visit</h1>
       <br></br>
       <h2>Pick a date to go grocery shopping!</h2>

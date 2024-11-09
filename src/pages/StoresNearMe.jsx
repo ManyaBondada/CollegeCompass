@@ -1,5 +1,6 @@
 import { Button } from "@nextui-org/react";
 import { Link } from 'react-router-dom';
+import BackButton from "./BackButton";
 
 const StoresNearMe = () => {
   // Array of store data
@@ -11,6 +12,7 @@ const StoresNearMe = () => {
 
   return (
     <div>
+      <BackButton/>
       <h1>Stores Near Me</h1>
       <br></br>
       <h2>Stores in your area</h2>
