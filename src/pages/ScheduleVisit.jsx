@@ -3,9 +3,16 @@ import { Button, Input, DatePicker } from '@nextui-org/react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import BackButton from './BackButton';
+import {now, getLocalTimeZone} from "@internationalized/date";
+import { parseDate } from "@internationalized/date";
 
 const ScheduleVisit = () => {
-  const [selectedDate, setSelectedDate] = useState(null);
+
+  // Get today's date
+  const today = new Date();
+  const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;  
+
+  const [selectedDate, setSelectedDate] = useState(parseDate(formattedDate)); // Init today's date
   const [contactMethod, setContactMethod] = useState(""); 
   const [phoneNumber, setPhoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");

@@ -4,10 +4,14 @@ import { DateRangePicker } from "@nextui-org/date-picker";
 import { Button} from "@nextui-org/react";
 import { useState } from "react";
 import BackButton from "./BackButton";
+import {parseDate} from "@internationalized/date";
 
 const Events = () => {
     const [selectedCultures, setSelectedCultures] = useState([]);
     const [zipCode, setZipCode] = useState(""); // Add state for zip code
+
+    const today = new Date();
+    const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;  
 
     const cultures = [
         { value: "chinese", label: "Chinese 🇨🇳" },
@@ -73,7 +77,14 @@ const Events = () => {
 
           <div>
             <p className="font-bold">Date</p>
-            <DateRangePicker label="Choose a date range" className="max-w-xs" />
+            <DateRangePicker 
+              label="Choose a date range" className="max-w-xs" 
+              defaultValue={{
+                start: parseDate(formattedDate), 
+                end: parseDate(formattedDate) 
+              }}
+              
+              />
           </div>
 
           <div>
