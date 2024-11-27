@@ -7,6 +7,7 @@ import BackButton from "./BackButton";
 
 const Events = () => {
     const [selectedCultures, setSelectedCultures] = useState([]);
+    const [zipCode, setZipCode] = useState(""); // Add state for zip code
 
     const cultures = [
         { value: "chinese", label: "Chinese 🇨🇳" },
@@ -26,16 +27,37 @@ const Events = () => {
         );
     };
 
+    
+      // Checks whether user zip code input is valid
+      const isValidZipCode = (code) => /^\d{5}$/.test(code);
+
+      // Validates zip code and navigates to events-near-me
+      const handleSubmit = () => {
+        if (!isValidZipCode(zipCode)) {
+          alert("Please enter a valid 5-digit zip code. Example: 75080");
+          return;
+        }
+
+        window.location.href = `/events/events-near-me?cultures=${selectedCultures}`
+      }
+
+
     return (
       <>
       <BackButton/>
       <div className="flex flex-col h-screen">
         <h1>Find an Event</h1>
         <div className="flex flex-col justify-between h-[calc(100vh-80px)] p-4 space-y-5">
-          <div>
-            <Input placeholder="Enter zip code" className="w-full" />
-          </div>
-
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px'}}>
+          <Input 
+            placeholder="Enter zip code" 
+            className="w-full" 
+            value={zipCode} 
+            onChange={(e) => {
+              setZipCode(e.target.value);
+            }} 
+          />
+      </div>
           <div>
             <p className="font-bold">Radius</p>
             <Slider
@@ -81,8 +103,7 @@ const Events = () => {
           <div className="mt-auto flex justify-left pb-20">
             <Button
               auto
-              as="a"
-              href={`/events/events-near-me?cultures=${selectedCultures}`}
+              onClick={handleSubmit}
               style={{ backgroundColor: "#EADAFF", color: "#000" }}
             >
               Submit

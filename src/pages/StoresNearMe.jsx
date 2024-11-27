@@ -25,7 +25,7 @@ const StoresNearMe = () => {
     if (isValidZipCode(zipCode)) {
       setShowResults(true);
     } else {
-      alert("Please enter a valid 5-digit zip code.");
+      alert("Please enter a valid 5-digit zip code. Example: 75080");
     }
   };
 
