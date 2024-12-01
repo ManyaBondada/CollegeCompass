@@ -1,8 +1,10 @@
 import {CheckboxGroup, Checkbox, Button} from "@nextui-org/react";
+import BackButton from "./BackButton";
 
 const GroceryShopping = () => {
     return (
         <>
+            <BackButton/>
             <h1 style={{ fontSize: 'clamp(25px, 11vw, 48px)' }}>Grocery Shopping</h1>
             <br></br>
             <CheckboxGroup

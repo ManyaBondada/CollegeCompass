@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Checkbox, CheckboxGroup, Button, Input } from '@nextui-org/react';
+import BackButton from './BackButton';
 
 const GroceryList = () => {
     const [groceryItems, setGroceryItems] = useState([]);
@@ -48,9 +49,10 @@ const GroceryList = () => {
 
     return (
         <>
+            <BackButton/>
             <h1 style={{ fontSize: 'clamp(25px, 11vw, 48px)' }}>Grocery List</h1>
             <br />
-
+            
             <div style={{ display: 'flex', marginBottom: '20px' }}>
                 <Input
                     value={newItem}

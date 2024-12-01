@@ -1,5 +1,6 @@
 import { Button } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
+import BackButton from './BackButton';
 
 const Settings = () => {
 
@@ -14,6 +15,7 @@ const Settings = () => {
     }, []);
     return (
         <>
+            <BackButton/>
             <h1> Settings </h1>
             <br></br>
             <h2>Welcome {userName || "Guest"}!</h2>

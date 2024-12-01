@@ -1,17 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { Button } from '@nextui-org/react';
 import { useState } from 'react';
+import BackButton from './BackButton';
 
-const EventDetails = () => {
-  // Get the event ID from the URL
-  const { eventId } = useParams();
-
-  // State to track if buttons are clicked
-  const [isSignedUp, setIsSignedUp] = useState(false);
-  const [isShared, setIsShared] = useState(false);
-
-  // Event data
-  const eventData = {
+// Event data
+const eventData = {
     1: { 
         name: "Flamenco Fiesta Night", 
         date: "December 10th, 2024", 
@@ -131,11 +124,19 @@ const EventDetails = () => {
         location: "Indian Dance Academy, Dallas, TX", 
         description: "Learn popular Bollywood dance moves in this fun and energetic workshop.",
     }
-    // Add other events as needed...
   };
 
+const EventDetails = () => {
+  // Get the event ID from the URL
+  const { eventId } = useParams();
+  const event = eventData[Number(eventId)];
+
+  // State to track if buttons are clicked
+  const [isSignedUp, setIsSignedUp] = useState(false);
+  const [isShared, setIsShared] = useState(false);
+
   // Get the event information based on the ID from the URL
-  const event = eventData[eventId];
+  //const event = eventData[eventId];
 
   if (!event) {
     return <h2>Event not found</h2>;
@@ -143,6 +144,7 @@ const EventDetails = () => {
 
   return (
     <>
+      <BackButton/>
       <h1>{event.name}</h1>
       <br />
       <h2>Date: {event.date}</h2>

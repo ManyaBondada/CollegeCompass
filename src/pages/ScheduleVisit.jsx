@@ -2,16 +2,36 @@ import { useState } from 'react';
 import { Button, Input, DatePicker } from '@nextui-org/react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import BackButton from './BackButton';
+import {now, getLocalTimeZone} from "@internationalized/date";
+import { parseDate } from "@internationalized/date";
 
 const ScheduleVisit = () => {
-  const [selectedDate, setSelectedDate] = useState(null);
+
+  // Get today's date
+  const today = new Date();
+  const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;  
+
+  const [selectedDate, setSelectedDate] = useState(parseDate(formattedDate)); // Init today's date
   const [contactMethod, setContactMethod] = useState(""); 
   const [phoneNumber, setPhoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (contactMethod === "phone" && !validatePhoneNumber(phoneNumber)) {
+      alert("Please enter a valid 10-digit phone number.\nThe following formats are accepted: \n999 999 9999 \n999-999-9999");
+      return;
+    }
+
+    if (contactMethod === "email" && !validateEmail(emailAddress)) {
+      alert("Please enter a valid email address.\nThe following format is accepted: johndoe@gmail.com");
+      return;
+    }
+      
     setIsPopupOpen(true); // Open popup on form submission
   };
 
@@ -23,11 +43,24 @@ const ScheduleVisit = () => {
     setContactMethod((prev) => (prev === method ? "" : method));
   };
 
+  const validatePhoneNumber = (number) => {
+    const trimmedNumber = number.replace(/\s+/g, '');
+    const phoneRegex = new RegExp('^\\d{3}-\\d{3}-\\d{4}$|^\\d{10}$');
+    return phoneRegex.test(trimmedNumber); 
+  }
+
+  const validateEmail = (email) => {
+    const emailRegex = new RegExp('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$');
+    return emailRegex.test(email);
+  }
+
   return (
     <>
+
+      <BackButton/>
       <h1 style={{ fontSize: 'clamp(25px, 11vw, 48px)' }}>Schedule Visit</h1>
       <br></br>
-      <h2>Pick a date to go grocery shopping!</h2>
+      <h2 className="mb-4 font-bold">Pick a date to go grocery shopping!</h2>
       
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '20px' }}>
@@ -40,7 +73,8 @@ const ScheduleVisit = () => {
         </div>
 
         <div style={{ marginBottom: '20px' }}>
-          <h2 className="mb-2">Choose Contact Method</h2>
+          <h2 className="mb-2 font-bold">Choose Contact Method</h2>
+          <p className="mb-4"> We'll use this information to remind you on the day of your trip! This is completely optional. </p>
 
           <Button
             onClick={() => handleContactToggle("phone")}
