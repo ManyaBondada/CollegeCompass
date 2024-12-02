@@ -1,5 +1,7 @@
 import { Button, Input } from "@nextui-org/react";
 import { useEffect, useState } from "react";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import BackButton from "./BackButton";
 
 const Settings = () => {
@@ -16,7 +18,7 @@ const Settings = () => {
     const savedYear = localStorage.getItem("userYear") || "";
 
     if (savedName) setName(savedName);
-    if (savedLocation) setLocation(savedLocation); 
+    if (savedLocation) setLocation(savedLocation);
     setSelectedInterests(savedInterests);
     setSelectedYear(savedYear);
   }, []);
@@ -45,6 +47,60 @@ const Settings = () => {
     const newYear = selectedYear === year ? "" : year;
     setSelectedYear(newYear);
     localStorage.setItem("userYear", newYear);
+  };
+
+  const handleResetProfile = () => {
+    localStorage.clear();
+    window.location.href = "/";
+  };
+
+  const confirmResetProfile = () => {
+    confirmAlert({
+      message: "Are you sure you want to reset all your information? This action is irreversible.",
+      buttons: [
+        {
+          label: "Reset",
+          onClick: handleResetProfile,
+        },
+        {
+          label: "Cancel",
+        },
+      ],
+      overlayClassName: "custom-overlay",
+      closeOnClickOutside: false,
+      customUI: ({ message, onClose }) => (
+        <div style={{ textAlign: "center", padding: "20px", width: "300px", background: "#fff", borderRadius: "8px" }}>
+          <p>{message}</p>
+          <br/>
+          <div style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
+            <Button
+              onClick={() => {
+                onClose();
+                handleResetProfile();
+              }}
+              style={{
+                backgroundColor: "rgba(255, 111, 97, 0.8)",
+                color: "#fff",
+                border: "1px solid #ccc",
+                padding: "20px 20px",
+                fontSize: "14px",
+              }}
+            >
+              Yes, Reset
+            </Button>
+            <Button onClick={onClose} style={{
+              backgroundColor: "#f9f9f9",
+              color: "#666",
+              border: "1px solid #ccc",
+              padding: "20px 20px",
+              fontSize: "14px",
+            }}>
+              Cancel
+            </Button>
+          </div>
+        </div>
+      ),
+    });
   };
 
   const interests = [
@@ -131,6 +187,25 @@ const Settings = () => {
               </Button>
             ))}
           </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <div>
+          <Button
+            auto
+            style={{
+              backgroundColor: "rgba(255, 111, 97, 0.8)",
+              color: "#fff",
+              border: "1px solid #ccc",
+              padding: "10px 20px",
+            }}
+            onClick={confirmResetProfile}
+          >
+            Reset Profile
+          </Button>
         </div>
       </div>
     </div>
