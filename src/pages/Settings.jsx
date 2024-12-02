@@ -67,85 +67,85 @@ const Settings = () => {
       <BackButton />
       <h1 className="text-4xl font-bold">Settings</h1>
       <br />
-
-      <div>
-        <p className="font-bold">Name</p>
-        <Input
-          placeholder="Enter your name"
-          value={name}
-          onChange={handleNameChange}
-        />
-      </div>
+      <h2>Edit onboarding information here.</h2>
       <br />
 
-      <div>
-        <p className="font-bold">Location</p>
-        <Input
-          placeholder="Enter your location"
-          value={location}
-          onChange={handleLocationChange}
-        />
-      </div>
-      <br />
-
-      <div>
-        <p className="font-bold">Interests</p>
-        <div className="flex flex-wrap gap-2 mt-2">
-          {interests.map((interest) => (
-            <Button
-              key={interest.value}
-              onClick={() => handleInterestToggle(interest.value)}
-              style={{
-                backgroundColor: selectedInterests.includes(interest.value)
-                  ? "#EADAFF"
-                  : "#f9f9f9",
-                color: selectedInterests.includes(interest.value)
-                  ? "#000"
-                  : "#666",
-                border: "1px solid #ccc",
-                margin: "0 4px",
-              }}
-            >
-              {interest.label}
-            </Button>
-          ))}
+      <div className="space-y-6">
+        <div>
+          <p className="font-bold">Name</p>
+          <Input
+            placeholder="Enter your name"
+            value={name}
+            onChange={handleNameChange}
+          />
         </div>
-      </div>
-      <br />
 
-      <div>
-        <p className="font-bold">School Year</p>
-        <div className="flex flex-wrap gap-2 mt-2">
-          {schoolYears.map((year) => (
-            <Button
-              key={year.value}
-              onClick={() => handleYearToggle(year.value)}
-              style={{
-                backgroundColor:
-                  selectedYear === year.value ? "#EADAFF" : "#f9f9f9",
-                color: selectedYear === year.value ? "#000" : "#666",
-                border: "1px solid #ccc",
-                margin: "0 4px",
-              }}
-            >
-              {year.label}
-            </Button>
-          ))}
+        <div>
+          <p className="font-bold">Home Country</p>
+          <Input
+            placeholder="Enter your location"
+            value={location}
+            onChange={handleLocationChange}
+          />
         </div>
-      </div>
-      <br />
 
-      <div className="mt-auto flex justify-center">
-        <Button
-          auto
-          onClick={() => saveSettings(!isSaved)}
-          style={{
-            backgroundColor: isSaved ? "#C7A3FF" : "#EADAFF",
-            color: "#000",
-          }}
-        >
-          {isSaved ? "Settings Saved" : "Save"}
-        </Button>
+        <div>
+          <p className="font-bold">Interests</p>
+          <div className="flex flex-wrap gap-2 mt-2">
+            {interests.map((interest) => (
+              <Button
+                key={interest.value}
+                onClick={() => handleInterestToggle(interest.value)}
+                style={{
+                  backgroundColor: selectedInterests.includes(interest.value)
+                    ? "#EADAFF"
+                    : "#f9f9f9",
+                  color: selectedInterests.includes(interest.value)
+                    ? "#000"
+                    : "#666",
+                  border: "1px solid #ccc",
+                  margin: "0 4px",
+                }}
+              >
+                {interest.label}
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <p className="font-bold">School Year</p>
+          <div className="flex flex-wrap gap-2 mt-2">
+            {schoolYears.map((year) => (
+              <Button
+                key={year.value}
+                onClick={() => handleYearToggle(year.value)}
+                style={{
+                  backgroundColor:
+                    selectedYear === year.value ? "#EADAFF" : "#f9f9f9",
+                  color: selectedYear === year.value ? "#000" : "#666",
+                  border: "1px solid #ccc",
+                  margin: "0 4px",
+                }}
+              >
+                {year.label}
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-auto flex justify-center">
+          <Button
+            auto
+            onClick={() => saveSettings(!isSaved)}
+            style={{
+              backgroundColor: isSaved ? "#C7A3FF" : "#EADAFF",
+              color: "#000",
+            }}
+          >
+            {isSaved ? "Settings Saved" : "Save"}
+          </Button>
+        </div>
       </div>
     </div>
   );

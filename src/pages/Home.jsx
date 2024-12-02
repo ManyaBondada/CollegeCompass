@@ -29,7 +29,7 @@ const Home = () => {
 
     return (
       <>
-        <h1 className="text-4xl font-bold">Welcome, {userName || "Guest"}</h1>
+        <h1 className="text-4xl font-bold mt-3">Welcome, {userName || "Guest"}</h1>
         <br />
         <h2>Here are your tasks</h2>
         <br />
