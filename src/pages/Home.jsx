@@ -31,7 +31,7 @@ const Home = () => {
       <>
         <h1 className="text-4xl font-bold mt-3">Welcome, {userName || "Guest"}</h1>
         <br />
-        <h2>Here are your tasks</h2>
+        <h2>Here are your tasks: </h2>
         <br />
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           {tasks.map((task, index) => (

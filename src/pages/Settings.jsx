@@ -7,7 +7,6 @@ const Settings = () => {
   const [location, setLocation] = useState("");
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [selectedYear, setSelectedYear] = useState("");
-  const [isSaved, saveSettings] = useState(false);
 
   useEffect(() => {
     const savedName = localStorage.getItem("userName");
@@ -67,7 +66,7 @@ const Settings = () => {
       <BackButton />
       <h1 className="text-4xl font-bold">Settings</h1>
       <br />
-      <h2>Edit onboarding information here.</h2>
+      <h2>Edit onboarding information here. Your changes will be automatically saved. </h2>
       <br />
 
       <div className="space-y-6">
@@ -132,19 +131,6 @@ const Settings = () => {
               </Button>
             ))}
           </div>
-        </div>
-
-        <div className="mt-auto flex justify-center">
-          <Button
-            auto
-            onClick={() => saveSettings(!isSaved)}
-            style={{
-              backgroundColor: isSaved ? "#C7A3FF" : "#EADAFF",
-              color: "#000",
-            }}
-          >
-            {isSaved ? "Settings Saved" : "Save"}
-          </Button>
         </div>
       </div>
     </div>
