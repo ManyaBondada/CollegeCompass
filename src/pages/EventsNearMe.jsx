@@ -35,46 +35,41 @@ const EventsNearMe = () => {
     return (
       <>
         <BackButton />
-        <div className="flex flex-col h-screen">
-          <h1 className="text-4xl font-bold mb-4">Events Near Me</h1>
-
-          <div className="flex-grow overflow-y-auto">
-              {filteredEvents.length > 0 ? (
-                filteredEvents.map((event) => (
-                  <Link
-                    key={event.id}
-                    to={`/events/${event.id}`}
-                    className="block w-full mb-4"
-                  >
-                    <Button
-                      color="secondary"
-                      style={{
-                        width: "100%",
-                        height: "90px",
-                        backgroundColor: "#EADAFF",
-                        color: "#000",
-                        borderRadius: "10px",
-                        fontSize: "24px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-start",
-                        justifyContent: "center",
-                        padding: "15px",
-                        marginBottom: "10px",
-                      }}
-                    >
-                      <span>{event.name}</span>
-                      <span style={{ fontSize: "15px", marginTop: "5px" }}>
-                        {event.details}
-                      </span>
-                    </Button>
-                  </Link>
-                ))
-              ) : (
-                <p>No events found for the selected cultures.</p>
-              )}
-          </div>
+        <div>
+          <h1 className="text-4xl font-bold">Events Near Me</h1>
+          {filteredEvents.length > 0 ? (
+            filteredEvents.map((event) => (
+              <Link key={event.id} to={`/events/${event.id}`}>
+                <Button
+                  color="secondary"
+                  style={{
+                    width: "100%",
+                    height: "90px",
+                    backgroundColor: "#EADAFF",
+                    color: "#000",
+                    borderRadius: "10px",
+                    fontSize: "24px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    justifyContent: "center",
+                    padding: "15px",
+                    marginBottom: "10px",
+                    marginTop: "20px",
+                  }}
+                >
+                  <span>{event.name}</span>
+                  <span style={{ fontSize: "15px", marginTop: "5px" }}>
+                    {event.details}
+                  </span>
+                </Button>
+              </Link>
+            ))
+          ) : (
+            <p>No events found for the selected cultures.</p>
+          )}
         </div>
+
       </>
     );
 }
