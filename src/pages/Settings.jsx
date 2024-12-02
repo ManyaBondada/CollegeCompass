@@ -65,7 +65,7 @@ const Settings = () => {
   return (
     <div>
       <BackButton />
-      <h1>Settings</h1>
+      <h1 className="text-4xl font-bold">Settings</h1>
       <br />
 
       <div>

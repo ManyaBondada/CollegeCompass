@@ -70,7 +70,7 @@ const Onboarding = ({ setHasCompletedOnboarding }) => {
 
   return (
     <div className="flex flex-col justify-between h-[calc(100vh-80px)] p-4 space-y-6">
-      <h1 className="text-2xl font-bold">Welcome, {name || "Guest"}!</h1>
+      <h1 className="text-4xl font-bold">Welcome, {name || "Guest"}!</h1>
       <p>Let's set up your account!</p>
 
       <div>

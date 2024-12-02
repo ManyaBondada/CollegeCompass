@@ -56,15 +56,14 @@ const ScheduleVisit = () => {
 
   return (
     <>
-
-      <BackButton/>
-      <h1 style={{ fontSize: 'clamp(25px, 11vw, 48px)' }}>Schedule Visit</h1>
+      <BackButton />
+      <h1 className="text-4xl font-bold">Schedule Visit</h1>
       <br></br>
       <h2 className="mb-4 font-bold">Pick a date to go grocery shopping!</h2>
-      
+
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '20px' }}>
-        <DatePicker
+        <div style={{ marginBottom: "20px" }}>
+          <DatePicker
             value={selectedDate}
             onChange={(date) => setSelectedDate(date)}
             placeholder="Pick a Date"
@@ -72,17 +71,22 @@ const ScheduleVisit = () => {
           />
         </div>
 
-        <div style={{ marginBottom: '20px' }}>
+        <div style={{ marginBottom: "20px" }}>
           <h2 className="mb-2 font-bold">Choose Contact Method</h2>
-          <p className="mb-4"> We'll use this information to remind you on the day of your trip! This is completely optional. </p>
+          <p className="mb-4">
+            {" "}
+            We'll use this information to remind you on the day of your trip!
+            This is completely optional.{" "}
+          </p>
 
           <Button
             onClick={() => handleContactToggle("phone")}
             style={{
-              backgroundColor: contactMethod === "phone" ? '#EADAFF' : '#f9f9f9',
-              color: contactMethod === "phone" ? '#000' : '#666',
-              border: '1px solid #ccc',
-              margin: '0 4px',
+              backgroundColor:
+                contactMethod === "phone" ? "#EADAFF" : "#f9f9f9",
+              color: contactMethod === "phone" ? "#000" : "#666",
+              border: "1px solid #ccc",
+              margin: "0 4px",
             }}
           >
             📞 Phone
@@ -91,16 +95,17 @@ const ScheduleVisit = () => {
           <Button
             onClick={() => handleContactToggle("email")}
             style={{
-              backgroundColor: contactMethod === "email" ? '#EADAFF' : '#f9f9f9',
-              color: contactMethod === "email" ? '#000' : '#666',
-              border: '1px solid #ccc',
-              margin: '0 4px',
+              backgroundColor:
+                contactMethod === "email" ? "#EADAFF" : "#f9f9f9",
+              color: contactMethod === "email" ? "#000" : "#666",
+              border: "1px solid #ccc",
+              margin: "0 4px",
             }}
           >
             ✉️ Email
           </Button>
 
-          <div style={{ marginTop: '20px' }}>
+          <div style={{ marginTop: "20px" }}>
             {contactMethod === "phone" && (
               <Input
                 placeholder="Enter phone number"
@@ -123,7 +128,10 @@ const ScheduleVisit = () => {
           </div>
         </div>
 
-        <Button type="submit" style={{ backgroundColor: '#EADAFF', color: '#000' }}>
+        <Button
+          type="submit"
+          style={{ backgroundColor: "#EADAFF", color: "#000" }}
+        >
           Submit
         </Button>
       </form>
@@ -131,20 +139,27 @@ const ScheduleVisit = () => {
       <Popup open={isPopupOpen} onClose={closePopup} modal>
         <div
           style={{
-            padding: '30px',
-            textAlign: 'center',
-            borderRadius: '10px',
-            backgroundColor: '#fff',
-            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-            maxWidth: '500px',
-            margin: '0 auto',
+            padding: "30px",
+            textAlign: "center",
+            borderRadius: "10px",
+            backgroundColor: "#fff",
+            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+            maxWidth: "500px",
+            margin: "0 auto",
           }}
         >
-          <h4 style={{ fontSize: '20px', marginBottom: '20px' }}>Confirmation</h4>
-          <p style={{ marginBottom: '20px' }}>Your visit has been scheduled for {selectedDate ? selectedDate.toString() : "No date selected"}</p>
+          <h4 style={{ fontSize: "20px", marginBottom: "20px" }}>
+            Confirmation
+          </h4>
+          <p style={{ marginBottom: "20px" }}>
+            Your visit has been scheduled for{" "}
+            {selectedDate ? selectedDate.toString() : "No date selected"}
+          </p>
           {contactMethod === "phone" && <p>Phone Number: {phoneNumber}</p>}
           {contactMethod === "email" && <p>Email Address: {emailAddress}</p>}
-          <p style={{ marginTop: '20px' }}>Closing this message will redirect you back to the homepage</p>
+          <p style={{ marginTop: "20px" }}>
+            Closing this message will redirect you back to the homepage
+          </p>
           <Button
             auto
             as="a"
@@ -152,9 +167,9 @@ const ScheduleVisit = () => {
             color="primary"
             onClick={closePopup}
             style={{
-              backgroundColor: '#EADAFF',
-              color: '#000',
-              marginTop: '20px',
+              backgroundColor: "#EADAFF",
+              color: "#000",
+              marginTop: "20px",
             }}
           >
             OK
