@@ -1,6 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Input, CheckboxGroup, Checkbox, Button, RadioGroup, Radio } from "@nextui-org/react";
+import {
+  Input,
+  CheckboxGroup,
+  Checkbox,
+  Button,
+  RadioGroup,
+  Radio,
+} from "@nextui-org/react";
 
 const Onboarding = ({ setHasCompletedOnboarding }) => {
   const navigate = useNavigate();
@@ -8,17 +15,20 @@ const Onboarding = ({ setHasCompletedOnboarding }) => {
   const [location, setLocation] = useState("");
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [selectedYear, setSelectedYear] = useState("");
+  
 
   // Load the name from local storage on component mount
   useEffect(() => {
     const savedName = localStorage.getItem("userName");
     const savedLocation = localStorage.getItem("userLocation");
-    if (savedName) {
-      setName(savedName);
-    }
-    if (savedLocation) {
-      setLocation(savedLocation);
-    }
+    const savedInterests =
+      JSON.parse(localStorage.getItem("userInterests")) || [];
+    const savedYear = localStorage.getItem("userYear");
+
+    if (savedName) setName(savedName);
+    if (savedLocation) setLocation(savedLocation);
+    if (savedInterests) setSelectedInterests(savedInterests);
+    if (savedYear) setSelectedYear(savedYear);
   }, []);
 
   // Save the name to local storage whenever it changes
@@ -42,16 +52,19 @@ const Onboarding = ({ setHasCompletedOnboarding }) => {
   };
 
   const handleInterestToggle = (interest) => {
-    setSelectedInterests(
-      (prev) =>
-        prev.includes(interest)
-          ? prev.filter((i) => i !== interest) // Deselect
-          : [...prev, interest] // Select
-    );
+    setSelectedInterests((prev) => {
+      const updatedInterests = prev.includes(interest)
+        ? prev.filter((i) => i !== interest) // Deselect
+        : [...prev, interest]; // Select
+      localStorage.setItem("userInterests", JSON.stringify(updatedInterests));
+      return updatedInterests;
+    });
   };
 
   const handleYearToggle = (year) => {
-    setSelectedYear((prev) => (prev === year ? "" : year)); // Toggle selection
+    const updatedYear = selectedYear === year ? "" : year;
+    setSelectedYear(updatedYear);
+    localStorage.setItem("userYear", updatedYear);
   };
 
   const interests = [
