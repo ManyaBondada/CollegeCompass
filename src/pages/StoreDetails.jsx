@@ -43,40 +43,39 @@ const StoreDetails = () => {
 
   return (
     <>
-      <BackButton/>
-      <h1>{store.name}</h1>
+      <BackButton />
+      <h1 className="text-4xl font-bold">{store.name}</h1>
       <br></br>
 
       <h2>{store.address}</h2>
-      <div style={{ marginTop: '20px' }}>
+      <div style={{ marginTop: "20px" }}>
         <p>{store.distance}</p>
         <p>{store.hours}</p>
         <p>{store.services}</p>
         <p>{store.phone}</p>
       </div>
       <br></br>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <Button
-            auto
-            as="a"
-            href="/bus-schedule"
-            style={{ backgroundColor: '#EADAFF', color: '#000' }}
+          auto
+          as="a"
+          href="/bus-schedule"
+          style={{ backgroundColor: "#EADAFF", color: "#000" }}
         >
-            Check Bus Schedule
+          Check Bus Schedule
         </Button>
       </div>
       <br></br>
       <div>
         <Button
-            auto
-            as="a"
-            href="/home/grocery-shopping"
-            style={{ backgroundColor: '#EADAFF', color: '#000' }}
+          auto
+          as="a"
+          href="/home/grocery-shopping"
+          style={{ backgroundColor: "#EADAFF", color: "#000" }}
         >
-            Select Store
+          Select Store
         </Button>
       </div>
-
     </>
   );
 };

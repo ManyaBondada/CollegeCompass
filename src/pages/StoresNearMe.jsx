@@ -32,40 +32,39 @@ const StoresNearMe = () => {
 
   return (
     <div>
-      <BackButton/>
-      <h1>Stores Near Me</h1>
+      <BackButton />
+      <h1 className="text-4xl font-bold">Stores Near Me</h1>
       <br></br>
-       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <Input 
-          placeholder="Enter zip code" 
-          className="w-full" 
-          value={zipCode} 
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <Input
+          placeholder="Enter zip code"
+          className="w-full"
+          value={zipCode}
           onChange={(e) => {
             setZipCode(e.target.value);
             setShowResults(false); // Reset results on new input
-          }} 
+          }}
         />
-        <Button 
-          style={{ backgroundColor: '#EADAFF', color: '#000' }}
-          onClick={handleSubmit}>
+        <Button
+          style={{ backgroundColor: "#EADAFF", color: "#000" }}
+          onClick={handleSubmit}
+        >
           Submit
         </Button>
       </div>
       <br />
 
-
-
       <div>
-          <p className="font-bold">Radius</p>
-          <Slider
-            label="Distance (miles)"
-            step={1}
-            maxValue={50}
-            minValue={0}
-            defaultValue={10}
-            className="max-w-md"
-            color="secondary"
-          />
+        <p className="font-bold">Radius</p>
+        <Slider
+          label="Distance (miles)"
+          step={1}
+          maxValue={50}
+          minValue={0}
+          defaultValue={10}
+          className="max-w-md"
+          color="secondary"
+        />
       </div>
       <br />
 
@@ -73,35 +72,35 @@ const StoresNearMe = () => {
         <div>
           <p>Stores in your area</p>
           {stores.map((store, index) => (
-          <Link key={index} to={`/find-stores/${store.id}`}>
-            <Button
-              color="secondary"
-              style={{
-                height: '85px',
-                width: '350px',
-                backgroundColor: '#EADAFF', 
-                color: '#000',
-                borderRadius: '10px',
-                fontSize: '30px',
-                paddingRight: '150px',
-                paddingBottom: '15px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                justifyContent: 'center',
-                marginBottom: '15px',
-                marginTop: '20px'
-              }}
-            >
-              <span>{store.name}</span>
-              <span style={{ fontSize: '15px', marginTop: '5px' }}>{store.address}</span>
-            </Button>
-          </Link>
-        ))}
+            <Link key={index} to={`/find-stores/${store.id}`}>
+              <Button
+                color="secondary"
+                style={{
+                  height: "85px",
+                  width: "350px",
+                  backgroundColor: "#EADAFF",
+                  color: "#000",
+                  borderRadius: "10px",
+                  fontSize: "30px",
+                  paddingRight: "150px",
+                  paddingBottom: "15px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  justifyContent: "center",
+                  marginBottom: "15px",
+                  marginTop: "20px",
+                }}
+              >
+                <span>{store.name}</span>
+                <span style={{ fontSize: "15px", marginTop: "5px" }}>
+                  {store.address}
+                </span>
+              </Button>
+            </Link>
+          ))}
         </div>
-        
       )}
-
     </div>
   );
 };

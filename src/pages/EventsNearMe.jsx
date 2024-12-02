@@ -32,46 +32,45 @@ const EventsNearMe = () => {
     // Filter events based on selected cultures
     const filteredEvents = events.filter(event => selectedCultures.includes(event.culture));
 
-    return ( 
+    return (
       <>
-      <BackButton/>
-      <div className="flex flex-col h-screen">
-            <h1 className="text-left p-2">Events Near Me</h1>
-            
-            <div className="flex-grow relative">
-                <div className="absolute top-0 left-0 right-0 bottom-24 overflow-y-auto px-4">
-                    {filteredEvents.length > 0 ? (
-                        filteredEvents.map((event) => (
-                            <Link key={event.id} to={`/events/${event.id}`} className="block w-full mb-4">
-                                <Button
-                                    color="secondary"
-                                    style={{
-                                        width: '100%',
-                                        height: '90px',
-                                        backgroundColor: '#EADAFF',
-                                        color: '#000',
-                                        borderRadius: '10px',
-                                        fontSize: '24px',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        alignItems: 'flex-start',
-                                        justifyContent: 'center',
-                                        padding: '15px',
-                                        marginBottom: '10px',
-                                    }}
-                                >
-                                    <span>{event.name}</span>
-                                    <span style={{ fontSize: '15px', marginTop: '5px' }}>{event.details}</span>
-                                </Button>
-                            </Link>
-                        ))
-                    ) : (
-                        <p>No events found for the selected cultures.</p>
-                    )}
-                </div>
-            </div>
-        </div> 
-        </>
+        <BackButton />
+        <div>
+          <h1 className="text-4xl font-bold">Events Near Me</h1>
+          {filteredEvents.length > 0 ? (
+            filteredEvents.map((event) => (
+              <Link key={event.id} to={`/events/${event.id}`}>
+                <Button
+                  color="secondary"
+                  style={{
+                    width: "100%",
+                    height: "90px",
+                    backgroundColor: "#EADAFF",
+                    color: "#000",
+                    borderRadius: "10px",
+                    fontSize: "24px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    justifyContent: "center",
+                    padding: "15px",
+                    marginBottom: "10px",
+                    marginTop: "20px",
+                  }}
+                >
+                  <span>{event.name}</span>
+                  <span style={{ fontSize: "15px", marginTop: "5px" }}>
+                    {event.details}
+                  </span>
+                </Button>
+              </Link>
+            ))
+          ) : (
+            <p>No events found for the selected cultures.</p>
+          )}
+        </div>
+
+      </>
     );
 }
  

@@ -48,20 +48,27 @@ const Events = () => {
 
     return (
       <>
-      <BackButton/>
-      <div className="flex flex-col">
-        <h1>Find an Event</h1>
-        <div className="flex flex-col justify-between space-y-10">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingTop: '20px'}}>
-            <Input 
-              placeholder="Enter zip code" 
-              className="w-full" 
-              value={zipCode} 
-              onChange={(e) => {
-                setZipCode(e.target.value);
-              }} 
-            />
-        </div>
+        <BackButton />
+        <div className="flex flex-col">
+          <h1 className="text-4xl font-bold">Find an Event</h1>
+          <div className="flex flex-col justify-between space-y-10">
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                paddingTop: "20px",
+              }}
+            >
+              <Input
+                placeholder="Enter zip code"
+                className="w-full"
+                value={zipCode}
+                onChange={(e) => {
+                  setZipCode(e.target.value);
+                }}
+              />
+            </div>
             <div>
               <p className="font-bold pb-2">Radius</p>
               <Slider
@@ -77,14 +84,14 @@ const Events = () => {
 
             <div>
               <p className="font-bold pb-2">Date</p>
-              <DateRangePicker 
-                label="Choose a date range" className="max-w-xs" 
+              <DateRangePicker
+                label="Choose a date range"
+                className="max-w-xs"
                 defaultValue={{
-                  start: parseDate(formattedDate), 
-                  end: parseDate(formattedDate) 
+                  start: parseDate(formattedDate),
+                  end: parseDate(formattedDate),
                 }}
-                
-                />
+              />
             </div>
 
             <div>

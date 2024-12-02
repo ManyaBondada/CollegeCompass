@@ -48,63 +48,67 @@ const GroceryList = () => {
     };
 
     return (
-        <>
-            <BackButton/>
-            <h1 style={{ fontSize: 'clamp(25px, 11vw, 48px)' }}>Grocery List</h1>
-            <br />
-            
-            <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <Input
-                    value={newItem}
-                    onChange={(e) => setNewItem(e.target.value)}
-                    placeholder="Add a grocery item"
-                    fullWidth
-                    clearable
-                />
-                <Button 
-                    onClick={handleAddItem}
-                    style={{ marginLeft: '10px', backgroundColor: '#EADAFF', color: '#000' }}
+      <>
+        <BackButton />
+        <h1 className="text-4xl font-bold">Grocery List</h1>
+        <br />
+
+        <div style={{ display: "flex", marginBottom: "20px" }}>
+          <Input
+            value={newItem}
+            onChange={(e) => setNewItem(e.target.value)}
+            placeholder="Add a grocery item"
+            fullWidth
+            clearable
+          />
+          <Button
+            onClick={handleAddItem}
+            style={{
+              marginLeft: "10px",
+              backgroundColor: "#EADAFF",
+              color: "#000",
+            }}
+          >
+            Add
+          </Button>
+        </div>
+
+        <CheckboxGroup
+          label="Your Grocery List"
+          value={checkedItems}
+          onChange={handleCheckboxChange}
+          color="secondary"
+        >
+          {groceryItems.map((item, index) => (
+            <div key={index} style={{ display: "flex", alignItems: "center" }}>
+              <Checkbox value={item}>
+                <span
+                  style={{
+                    textDecoration: checkedItems.includes(item)
+                      ? "line-through"
+                      : "none",
+                    color: "#000",
+                  }}
                 >
-                    Add
-                </Button>
+                  {item}
+                </span>
+              </Checkbox>
             </div>
+          ))}
+        </CheckboxGroup>
 
-            <CheckboxGroup
-                label="Your Grocery List"
-                value={checkedItems}
-                onChange={handleCheckboxChange}
-                color="secondary"
+        {/* Conditionally display the "Clear All" button */}
+        {groceryItems.length > 0 && (
+          <div style={{ marginTop: "20px" }}>
+            <Button
+              onClick={handleClearAll}
+              style={{ backgroundColor: "#FF6B6B", color: "#fff" }}
             >
-                {groceryItems.map((item, index) => (
-                    <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
-                        <Checkbox value={item}>
-                            <span
-                                style={{
-                                    textDecoration: checkedItems.includes(item)
-                                        ? 'line-through'
-                                        : 'none',
-                                    color: '#000'
-                                }}
-                            >
-                                {item}
-                            </span>
-                        </Checkbox>
-                    </div>
-                ))}
-            </CheckboxGroup>
-
-            {/* Conditionally display the "Clear All" button */}
-            {groceryItems.length > 0 && (
-                <div style={{ marginTop: '20px' }}>
-                    <Button
-                        onClick={handleClearAll}
-                        style={{ backgroundColor: '#FF6B6B', color: '#fff' }}
-                    >
-                        Clear All
-                    </Button>
-                </div>
-            )}
-        </>
+              Clear All
+            </Button>
+          </div>
+        )}
+      </>
     );
 };
 

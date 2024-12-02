@@ -144,48 +144,48 @@ const EventDetails = () => {
 
   return (
     <>
-      <BackButton/>
-      <h1>{event.name}</h1>
+      <BackButton />
+      <h1 className="text-4xl font-bold">{event.name}</h1>
       <br />
       <h2>Date: {event.date}</h2>
       <h2>Time: {event.time}</h2>
       <h2>Location: {event.location}</h2>
-      <div style={{ marginTop: '20px' }}>
+      <div style={{ marginTop: "20px" }}>
         <p>{event.description}</p>
       </div>
       <br />
-      
+
       {/* Button Section */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <Button
-            auto
-            onClick={() => setIsSignedUp(!isSignedUp)}
-            style={{
-                backgroundColor: isSignedUp ? '#C7A3FF' : '#EADAFF', // Highlighted if clicked
-                color: '#000',
-            }}
+          auto
+          onClick={() => setIsSignedUp(!isSignedUp)}
+          style={{
+            backgroundColor: isSignedUp ? "#C7A3FF" : "#EADAFF", // Highlighted if clicked
+            color: "#000",
+          }}
         >
-            {isSignedUp ? "Signed Up" : "Sign Up"}
+          {isSignedUp ? "Signed Up" : "Sign Up"}
         </Button>
-        
+
         <Button
-            auto
-            onClick={() => setIsShared(!isShared)}
-            style={{
-                backgroundColor: isShared ? '#C7A3FF' : '#EADAFF', // Highlighted if clicked
-                color: '#000',
-            }}
+          auto
+          onClick={() => setIsShared(!isShared)}
+          style={{
+            backgroundColor: isShared ? "#C7A3FF" : "#EADAFF", // Highlighted if clicked
+            color: "#000",
+          }}
         >
-            {isShared ? "Shared" : "Share Event"}
+          {isShared ? "Shared" : "Share Event"}
         </Button>
-        
+
         <Button
-            auto
-            as="a"
-            href="/events"
-            style={{ backgroundColor: '#EADAFF', color: '#000' }}
+          auto
+          as="a"
+          href="/events"
+          style={{ backgroundColor: "#EADAFF", color: "#000" }}
         >
-            Back to Events
+          Back to Events
         </Button>
       </div>
     </>
