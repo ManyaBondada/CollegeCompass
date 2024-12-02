@@ -33,6 +33,12 @@ const GroceryList = () => {
         }
     };
 
+    // Handle deleting individual items
+    const handleDeleteItem = (itemToDelete) => {
+        setGroceryItems((prevItems) => prevItems.filter(item => item !== itemToDelete));
+        setCheckedItems((prevChecked) => prevChecked.filter(item => item !== itemToDelete));
+    };
+
     // Clear the entire grocery list and localStorage
     const handleClearAll = () => {
         setGroceryItems([]);
@@ -93,6 +99,20 @@ const GroceryList = () => {
                   {item}
                 </span>
               </Checkbox>
+              <Button
+                onClick={() => handleDeleteItem(item)}
+                style={{
+                  marginLeft: "5px",
+                  backgroundColor: "transparent",
+                  color: "grey",
+                  width: "32px",
+                  padding: "0",
+                  border: "none",
+                  minWidth: "32px",
+                }}
+              >
+                X
+              </Button>
             </div>
           ))}
         </CheckboxGroup>
