@@ -122,7 +122,11 @@ const Events = () => {
               <Button
                 auto
                 onClick={handleSubmit}
-                style={{ backgroundColor: "#EADAFF", color: "#000" }}
+                disabled={selectedCultures.length === 0}
+                style={{
+                  backgroundColor: selectedCultures.length > 0 ? "#EADAFF" : "#ccc",
+                  color: name.trim() ? "#000" : "#666",
+                }}
               >
                 Submit
               </Button>

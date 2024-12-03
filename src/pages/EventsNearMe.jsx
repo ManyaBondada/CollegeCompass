@@ -36,35 +36,37 @@ const EventsNearMe = () => {
       <BackButton />
       <h1 className="text-4xl font-bold">Events Near Me</h1>
       <br />
-      <h2>These events match your preferences! Click on each event to learn more.</h2>
-      <br />
       <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
         {filteredEvents.length > 0 ? (
-          filteredEvents.map((event) => (
-            <Link key={event.id} to={`/events/${event.id}`}>
-              <Button
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  justifyContent: "center",
-                  padding: "15px",
-                  height: "100px",
-                  backgroundColor: "#EADAFF",
-                  color: "#000",
-                  borderRadius: "8px",
-                  width: "100%",
-                }}
-              >
-                <span style={{ fontWeight: "bold", fontSize: "18px" }}>{event.name}</span>
-                <span style={{ fontSize: "14px", marginTop: "5px" }}>{event.details}</span>
-              </Button>
-            </Link>
-          ))
+          <>
+            <h2>These events match your preferences! Click on each event to learn more.</h2>
+            {filteredEvents.map((event) => (
+              <Link key={event.id} to={`/events/${event.id}`}>
+                <Button
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    justifyContent: "center",
+                    padding: "15px",
+                    height: "100px",
+                    backgroundColor: "#EADAFF",
+                    color: "#000",
+                    borderRadius: "8px",
+                    width: "100%",
+                  }}
+                >
+                  <span style={{ fontWeight: "bold", fontSize: "18px" }}>{event.name}</span>
+                  <span style={{ fontSize: "14px", marginTop: "5px" }}>{event.details}</span>
+                </Button>
+              </Link>
+            ))}
+          </>
         ) : (
           <p>No events found for the selected cultures.</p>
         )}
       </div>
+
     </>
   );
 };
