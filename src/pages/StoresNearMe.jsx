@@ -69,7 +69,7 @@ const StoresNearMe = () => {
 
       {showResults && (
         <div>
-          <p>Stores in your area</p>
+          <p>Stores in your area. Select a store to learn more details</p>
           {stores.map((store, index) => (
             <Link key={index} to={`/find-stores/${store.id}`}>
               <Button

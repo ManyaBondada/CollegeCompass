@@ -9,6 +9,7 @@ const Settings = () => {
   const [location, setLocation] = useState("");
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [selectedYear, setSelectedYear] = useState("");
+  const [showRegisteredEvents, setShowRegisteredEvents] = useState(false);
 
   useEffect(() => {
     const savedName = localStorage.getItem("userName");
@@ -117,6 +118,13 @@ const Settings = () => {
     { value: "phd", label: "👩‍🎓 PhD" },
   ];
 
+  const handleViewRegisteredEvents = () => {
+    setShowRegisteredEvents(!showRegisteredEvents);
+  };
+
+  // Get registered events from localStorage
+  const registeredEvents = JSON.parse(localStorage.getItem("events")) || [];
+
   return (
     <div>
       <BackButton />
@@ -189,11 +197,40 @@ const Settings = () => {
           </div>
         </div>
 
-        <br />
-        <br />
-        <br />
-        <br />
-        <div>
+        <div style={{ marginTop: "20px" }}>
+          <Button
+            auto
+            onClick={handleViewRegisteredEvents}
+            style={{
+              backgroundColor: "#EADAFF",
+              color: "#000",
+              border: "1px solid #ccc",
+              padding: "10px 20px",
+            }}
+          >
+            View Registered Events
+          </Button>
+        </div>
+
+        {showRegisteredEvents && (
+          <div style={{ marginTop: "20px" }}>
+            <h3 className="font-bold">Your Registered Events:</h3>
+            {registeredEvents.length > 0 ? (
+              <ul>
+                {registeredEvents.map((event, index) => (
+                  <li key={index}>{event}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>No events registered.</p>
+            )}
+          </div>
+        )}
+
+      <br/>
+      <br/>
+
+      <div>
           <Button
             auto
             style={{

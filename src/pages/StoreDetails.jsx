@@ -96,6 +96,7 @@ const StoreDetails = () => {
           Select Store
         </Button>
       </div>
+      <br></br>
     </>
   );
 };
