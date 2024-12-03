@@ -2,7 +2,7 @@ import { Input } from '@nextui-org/react';
 import { Slider } from '@nextui-org/react';
 import { DateRangePicker } from '@nextui-org/react';
 import { Button } from '@nextui-org/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import BackButton from './BackButton';
 import { parseDate } from '@internationalized/date';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const Events = () => {
   const [selectedCultures, setSelectedCultures] = useState([]);
   const [zipCode, setZipCode] = useState('');
+  // const [isSignedUp, setIsSignedUp] = useState(false);
 
   const today = new Date();
   const formattedDate = `${today.getFullYear()}-${String(
@@ -45,6 +46,7 @@ const Events = () => {
       alert('Please enter a valid 5-digit zip code. Example: 75080');
       return;
     }
+    localStorage.setItem("eventsTaskCompleted", "true");
 
     // Navigate to the events near me page
     navigate(`/events/events-near-me?cultures=${selectedCultures.join(',')}`);
