@@ -1,5 +1,3 @@
-// Events.js
-
 import { Input } from '@nextui-org/react';
 import { Slider } from '@nextui-org/react';
 import { DateRangePicker } from '@nextui-org/react';
@@ -100,7 +98,6 @@ const Events = () => {
             />
           </div>
 
-<<<<<<< HEAD
           <div>
             <p className="font-bold pb-2">Select a culture</p>
             <div className="flex flex-wrap gap-2 mt-2">
@@ -122,60 +119,22 @@ const Events = () => {
                   {culture.label}
                 </Button>
               ))}
-=======
-            <div>
-              <p className="font-bold pb-2">Select a culture</p>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {cultures.map((culture) => (
-                  <Button
-                    key={culture.value}
-                    onClick={() => handleCultureToggle(culture.value)}
-                    style={{
-                      backgroundColor: selectedCultures.includes(culture.value)
-                        ? "#EADAFF"
-                        : "#f9f9f9",
-                      color: selectedCultures.includes(culture.value)
-                        ? "#000"
-                        : "#666",
-                      border: "1px solid #ccc",
-                      margin: "0 4px",
-                    }}
-                  >
-                    {culture.label}
-                  </Button>
-                ))}
-              </div>
             </div>
+          </div>
 
             <div className="mt-auto flex justify-center">
               <Button
                 auto
                 onClick={handleSubmit}
-                disabled={selectedCultures.length === 0}
-                style={{
-                  backgroundColor: selectedCultures.length > 0 ? "#EADAFF" : "#ccc",
-                  color: name.trim() ? "#000" : "#666",
-                }}
+                style={{ backgroundColor: "#EADAFF", color: "#000" }}
               >
                 Submit
               </Button>
->>>>>>> 7c5f33137d3d921a8ae43c5d564c009c42736df8
             </div>
           </div>
-
-          <div className="mt-auto flex justify-center">
-            <Button
-              auto
-              onClick={handleSubmit}
-              style={{ backgroundColor: '#EADAFF', color: '#000' }}
-            >
-              Submit
-            </Button>
-          </div>
         </div>
-      </div>
-    </>
-  );
-};
+      </>
+    );
+}
 
 export default Events;
