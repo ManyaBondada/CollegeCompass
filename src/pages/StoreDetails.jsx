@@ -66,16 +66,6 @@ const StoreDetails = () => {
         </Button>
       </div>
       <br></br>
-      <div>
-        <Button
-          auto
-          as="a"
-          href="/home/grocery-shopping"
-          style={{ backgroundColor: "#EADAFF", color: "#000" }}
-        >
-          Select Store
-        </Button>
-      </div>
     </>
   );
 };
