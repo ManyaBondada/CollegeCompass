@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { Button } from '@nextui-org/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import BackButton from './BackButton';
 
 // Event data
@@ -126,70 +126,90 @@ const eventData = {
     }
   };
 
-const EventDetails = () => {
-  // Get the event ID from the URL
-  const { eventId } = useParams();
-  const event = eventData[Number(eventId)];
-
-  // State to track if buttons are clicked
-  const [isSignedUp, setIsSignedUp] = useState(false);
-  const [isShared, setIsShared] = useState(false);
-
-  // Get the event information based on the ID from the URL
-  //const event = eventData[eventId];
-
-  if (!event) {
-    return <h2>Event not found</h2>;
-  }
-
-  return (
-    <>
-      <BackButton />
-      <h1 className="text-4xl font-bold">{event.name}</h1>
-      <br />
-      <h2>Date: {event.date}</h2>
-      <h2>Time: {event.time}</h2>
-      <h2>Location: {event.location}</h2>
-      <div style={{ marginTop: "20px" }}>
-        <p>{event.description}</p>
-      </div>
-      <br />
-
-      {/* Button Section */}
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <Button
-          auto
-          onClick={() => setIsSignedUp(!isSignedUp)}
-          style={{
-            backgroundColor: isSignedUp ? "#C7A3FF" : "#EADAFF", // Highlighted if clicked
-            color: "#000",
-          }}
-        >
-          {isSignedUp ? "Signed Up" : "Sign Up"}
-        </Button>
-
-        <Button
-          auto
-          onClick={() => setIsShared(!isShared)}
-          style={{
-            backgroundColor: isShared ? "#C7A3FF" : "#EADAFF", // Highlighted if clicked
-            color: "#000",
-          }}
-        >
-          {isShared ? "Shared" : "Share Event"}
-        </Button>
-
-        <Button
-          auto
-          as="a"
-          href="/events"
-          style={{ backgroundColor: "#EADAFF", color: "#000" }}
-        >
-          Back to Events
-        </Button>
-      </div>
-    </>
-  );
-};
-
-export default EventDetails;
+  const EventDetails = () => {
+    // Get the event ID from the URL
+    const { eventId } = useParams();
+    console.log('eventId:', eventId); // For debugging
+    const event = eventData[eventId]; // Use eventId as a string
+  
+    // State to track if buttons are clicked
+    const [isSignedUp, setIsSignedUp] = useState(false);
+    const [isShared, setIsShared] = useState(false);
+  
+    useEffect(() => {
+      // Check if the user has already signed up for an event
+      const eventsTaskCompleted = localStorage.getItem('eventsTaskCompleted') === 'true';
+      if (eventsTaskCompleted) {
+        setIsSignedUp(true);
+      }
+    }, []);
+  
+    const handleSignUp = () => {
+      // Toggle the sign-up state
+      const newSignUpState = !isSignedUp;
+      setIsSignedUp(newSignUpState);
+  
+      // Update localStorage
+      if (newSignUpState) {
+        localStorage.setItem('eventsTaskCompleted', 'true');
+      } else {
+        localStorage.removeItem('eventsTaskCompleted');
+      }
+    };
+  
+    if (!event) {
+      console.error(`Event with ID ${eventId} not found.`);
+      return <h2>Event not found</h2>;
+    }
+  
+    return (
+      <>
+        <BackButton />
+        <h1 className="text-4xl font-bold">{event.name}</h1>
+        <br />
+        <h2>Date: {event.date}</h2>
+        <h2>Time: {event.time}</h2>
+        <h2>Location: {event.location}</h2>
+        <div style={{ marginTop: "20px" }}>
+          <p>{event.description}</p>
+        </div>
+        <br />
+  
+        {/* Button Section */}
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <Button
+            auto
+            onClick={handleSignUp}
+            style={{
+              backgroundColor: isSignedUp ? "#C7A3FF" : "#EADAFF", // Highlighted if clicked
+              color: "#000",
+            }}
+          >
+            {isSignedUp ? "Signed Up" : "Sign Up"}
+          </Button>
+  
+          <Button
+            auto
+            onClick={() => setIsShared(!isShared)}
+            style={{
+              backgroundColor: isShared ? "#C7A3FF" : "#EADAFF", // Highlighted if clicked
+              color: "#000",
+            }}
+          >
+            {isShared ? "Shared" : "Share Event"}
+          </Button>
+  
+          <Button
+            auto
+            as="a"
+            href="/events"
+            style={{ backgroundColor: "#EADAFF", color: "#000" }}
+          >
+            Back to Events
+          </Button>
+        </div>
+      </>
+    );
+  };
+  
+  export default EventDetails;

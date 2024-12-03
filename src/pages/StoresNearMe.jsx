@@ -1,7 +1,6 @@
 import { Button } from "@nextui-org/react";
 import { Link } from 'react-router-dom';
 import BackButton from "./BackButton";
-
 import { Input } from "@nextui-org/input";
 import { Slider } from "@nextui-org/slider";
 import { DateRangePicker } from "@nextui-org/date-picker";
@@ -105,4 +104,4 @@ const StoresNearMe = () => {
   );
 };
 
-export default StoresNearMe;
+export default StoresNearMe; 
