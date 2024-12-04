@@ -197,6 +197,8 @@ const Settings = () => {
           </div>
         </div>
 
+        <br/>
+
         <div style={{ marginTop: "20px" }}>
           <Button
             auto
@@ -227,7 +229,6 @@ const Settings = () => {
           </div>
         )}
 
-      <br/>
       <br/>
 
       <div>
