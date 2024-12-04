@@ -18,25 +18,29 @@ import EventDetails from './pages/EventDetails';
 
 function App() {
 
-  const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(false);
+  const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
+    return localStorage.getItem("hasCompletedOnboarding") === "true";
+  });
 
   return (
     <>
       <Router>
       <div className="flex flex-col min-h-screen overflow-x-hidden">
-        <nav className="fixed bottom-0 left-0 w-full max-w-screen overflow-x-hidden p-4 border-t border-gray-300 z-10">
-          <ul className="flex justify-between w-full max-w-screen-lg mx-auto z-10">
-            <li>
-              <Link to="/home" className="">Home</Link>
-            </li>
-            <li>
-              <Link to="/events" className="">Events</Link>
-            </li>
-            <li>
-              <Link to="/settings" className="">Settings</Link>
-            </li>
-          </ul>
-        </nav>
+        {hasCompletedOnboarding && (
+            <nav className="fixed bottom-0 left-0 w-full max-w-screen overflow-x-hidden p-4 border-t border-gray-300 z-10">
+              <ul className="flex justify-between w-full max-w-screen-lg mx-auto z-10">
+                <li>
+                  <Link to="/home" className="">Home</Link>
+                </li>
+                <li>
+                  <Link to="/events" className="">Events</Link>
+                </li>
+                <li>
+                  <Link to="/settings" className="">Settings</Link>
+                </li>
+              </ul>
+            </nav>
+          )}
 
         <div className="flex-grow p-4">
           <Routes>

@@ -1,5 +1,7 @@
 import { Button, Input } from "@nextui-org/react";
 import { useEffect, useState } from "react";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import BackButton from "./BackButton";
 
 const Settings = () => {
@@ -7,6 +9,7 @@ const Settings = () => {
   const [location, setLocation] = useState("");
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [selectedYear, setSelectedYear] = useState("");
+  const [showRegisteredEvents, setShowRegisteredEvents] = useState(false);
 
   useEffect(() => {
     const savedName = localStorage.getItem("userName");
@@ -16,7 +19,7 @@ const Settings = () => {
     const savedYear = localStorage.getItem("userYear") || "";
 
     if (savedName) setName(savedName);
-    if (savedLocation) setLocation(savedLocation); 
+    if (savedLocation) setLocation(savedLocation);
     setSelectedInterests(savedInterests);
     setSelectedYear(savedYear);
   }, []);
@@ -47,6 +50,60 @@ const Settings = () => {
     localStorage.setItem("userYear", newYear);
   };
 
+  const handleResetProfile = () => {
+    localStorage.clear();
+    window.location.href = "/";
+  };
+
+  const confirmResetProfile = () => {
+    confirmAlert({
+      message: "Are you sure you want to reset all your information? This action is irreversible.",
+      buttons: [
+        {
+          label: "Reset",
+          onClick: handleResetProfile,
+        },
+        {
+          label: "Cancel",
+        },
+      ],
+      overlayClassName: "custom-overlay",
+      closeOnClickOutside: false,
+      customUI: ({ message, onClose }) => (
+        <div style={{ textAlign: "center", padding: "20px", width: "300px", background: "#fff", borderRadius: "8px" }}>
+          <p>{message}</p>
+          <br/>
+          <div style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
+            <Button
+              onClick={() => {
+                onClose();
+                handleResetProfile();
+              }}
+              style={{
+                backgroundColor: "rgba(255, 111, 97, 0.8)",
+                color: "#fff",
+                border: "1px solid #ccc",
+                padding: "20px 20px",
+                fontSize: "14px",
+              }}
+            >
+              Yes, Reset
+            </Button>
+            <Button onClick={onClose} style={{
+              backgroundColor: "#f9f9f9",
+              color: "#666",
+              border: "1px solid #ccc",
+              padding: "20px 20px",
+              fontSize: "14px",
+            }}>
+              Cancel
+            </Button>
+          </div>
+        </div>
+      ),
+    });
+  };
+
   const interests = [
     { value: "cooking", label: "🍳 Cooking" },
     { value: "arts-crafts", label: "🎨 Arts & Crafts" },
@@ -60,6 +117,13 @@ const Settings = () => {
     { value: "masters", label: "📚 Masters" },
     { value: "phd", label: "👩‍🎓 PhD" },
   ];
+
+  const handleViewRegisteredEvents = () => {
+    setShowRegisteredEvents(!showRegisteredEvents);
+  };
+
+  // Get registered events from localStorage
+  const registeredEvents = JSON.parse(localStorage.getItem("events")) || [];
 
   return (
     <div>
@@ -131,6 +195,54 @@ const Settings = () => {
               </Button>
             ))}
           </div>
+        </div>
+
+        <div style={{ marginTop: "20px" }}>
+          <Button
+            auto
+            onClick={handleViewRegisteredEvents}
+            style={{
+              backgroundColor: "#EADAFF",
+              color: "#000",
+              border: "1px solid #ccc",
+              padding: "10px 20px",
+            }}
+          >
+            View Registered Events
+          </Button>
+        </div>
+
+        {showRegisteredEvents && (
+          <div style={{ marginTop: "20px" }}>
+            <h3 className="font-bold">Your Registered Events:</h3>
+            {registeredEvents.length > 0 ? (
+              <ul>
+                {registeredEvents.map((event, index) => (
+                  <li key={index}>{event}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>No events registered.</p>
+            )}
+          </div>
+        )}
+
+      <br/>
+      <br/>
+
+      <div>
+          <Button
+            auto
+            style={{
+              backgroundColor: "rgba(255, 111, 97, 0.8)",
+              color: "#fff",
+              border: "1px solid #ccc",
+              padding: "10px 20px",
+            }}
+            onClick={confirmResetProfile}
+          >
+            Reset Profile
+          </Button>
         </div>
       </div>
     </div>

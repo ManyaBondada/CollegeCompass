@@ -1,64 +1,100 @@
-import {CheckboxGroup, Checkbox, Button} from "@nextui-org/react";
-import BackButton from "./BackButton";
+// GroceryShopping.js
+
+import { useState, useEffect } from 'react';
+import { Checkbox, Button } from '@nextui-org/react';
+import BackButton from './BackButton';
+import { Link } from 'react-router-dom';
 
 const GroceryShopping = () => {
-    return (
-      <>
-        <BackButton />
-        <h1 className="text-4xl font-bold">Grocery Shopping</h1>
-        <br></br>
-        <CheckboxGroup label="Steps to Complete" color="secondary">
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <Checkbox value="make-grocery-list" />
-            <Button
-              auto
-              color="secondary"
-              as="a"
-              href="/home/grocery-shopping/make-grocery-list"
+  const [checkedSteps, setCheckedSteps] = useState([])
+
+  useEffect(() => {
+    // Retrieve checked steps from local storage
+    const temp = JSON.parse(localStorage.getItem('groceryShoppingSteps')) || [];
+    setCheckedSteps(temp);
+  }, []);
+
+  const steps = [
+    {
+      value: 'make-grocery-list',
+      label: 'Make Grocery List',
+      title: "Subtask 1: Make a Grocery List",
+      description: "Plan ahead and list down all the essentials you need 📝",
+      route: '/home/grocery-shopping/make-grocery-list',
+    },
+    {
+      value: 'find-stores',
+      label: 'Find Stores Near Me',
+      title: "Subtask 2: Find Stores Near Me",
+      description: "Discover the best stores around for your grocery needs 🛒",
+      route: '/home/grocery-shopping/find-stores',
+    },
+    {
+      value: 'schedule-visit',
+      label: 'Schedule Visit',
+      title: "Subtask 3: Schedule a Visit",
+      description: "Set aside some time that works best for you to go shopping ⏰",
+      route: '/home/grocery-shopping/schedule-visit',
+    },
+  ];
+
+  return (
+    <>
+      <BackButton />
+      <h1 className="text-4xl font-bold">Grocery Shopping</h1>
+      <br />
+      <h2>Love to cook? Let's get the ingredients! Feel free to complete these subtasks as many times as needed in any order.</h2>
+      <br/>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        {steps.map((step) => {
+          const isCompleted = checkedSteps.includes(step.value);
+  
+          // Add the return statement here
+          return (
+            <div
+              key={step.value}
               style={{
-                marginLeft: "8px",
-                backgroundColor: "#EADAFF",
-                color: "#000",
+                padding: '15px',
+                border: '1px solid #ccc',
+                borderRadius: '8px',
+                backgroundColor: isCompleted ? '#d3ffd3' : '#f9f9f9',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
-              Make Grocery List
-            </Button>
-          </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <Checkbox value="find-stores" />
-            <Button
-              auto
-              color="secondary"
-              as="a"
-              href="/home/grocery-shopping/find-stores"
-              style={{
-                marginLeft: "8px",
-                backgroundColor: "#EADAFF",
-                color: "#000",
-              }}
-            >
-              Find Stores Near Me
-            </Button>
-          </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <Checkbox value="schedule-visit" />
-            <Button
-              auto
-              color="secondary"
-              as="a"
-              href="/home/grocery-shopping/schedule-visit"
-              style={{
-                marginLeft: "8px",
-                backgroundColor: "#EADAFF",
-                color: "#000",
-              }}
-            >
-              Schedule Visit
-            </Button>
-          </div>
-        </CheckboxGroup>
-      </>
-    );
-}
- 
+              <p
+                style={{
+                  fontWeight: 'bold',
+                  textDecoration: isCompleted ? 'line-through' : 'none',
+                }}
+              >
+                {step.label}
+              </p>
+              <p>{step.description}</p>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '100%',
+                }}
+              >
+                <Link to={step.route} style={{ textDecoration: 'none' }}>
+                  <Button
+                    style={{
+                      backgroundColor: '#EADAFF',
+                      color: '#000',
+                    }}
+                  >
+                    {isCompleted ? 'View' : 'Start'}
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+};
+
 export default GroceryShopping;

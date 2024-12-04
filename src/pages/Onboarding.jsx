@@ -1,13 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import {
-  Input,
-  CheckboxGroup,
-  Checkbox,
-  Button,
-  RadioGroup,
-  Radio,
-} from "@nextui-org/react";
+import { Input, Button } from "@nextui-org/react";
 
 const Onboarding = ({ setHasCompletedOnboarding }) => {
   const navigate = useNavigate();
@@ -15,9 +8,7 @@ const Onboarding = ({ setHasCompletedOnboarding }) => {
   const [location, setLocation] = useState("");
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [selectedYear, setSelectedYear] = useState("");
-  
 
-  // Load the name from local storage on component mount
   useEffect(() => {
     const savedName = localStorage.getItem("userName");
     const savedLocation = localStorage.getItem("userLocation");
@@ -31,31 +22,27 @@ const Onboarding = ({ setHasCompletedOnboarding }) => {
     if (savedYear) setSelectedYear(savedYear);
   }, []);
 
-  // Save the name to local storage whenever it changes
   const handleNameChange = (e) => {
     const newName = e.target.value;
     setName(newName);
     localStorage.setItem("userName", newName);
   };
 
-  // Save the location to local storage whenever it changes
-  const handleLocationChange = (e) => {
-    const newLocation = e.target.value;
-    setLocation(newLocation);
-    localStorage.setItem("userLocation", newLocation);
-  };
-
   const handleFinishOnboarding = () => {
-    console.log("Onboarding finished!");
+    if (!name.trim()) {
+      alert("Name is required. Please enter your name before submitting.");
+      return;
+    }
     setHasCompletedOnboarding(true);
+    localStorage.setItem("hasCompletedOnboarding", "true");
     navigate("/home", { replace: true });
   };
 
   const handleInterestToggle = (interest) => {
     setSelectedInterests((prev) => {
       const updatedInterests = prev.includes(interest)
-        ? prev.filter((i) => i !== interest) // Deselect
-        : [...prev, interest]; // Select
+        ? prev.filter((i) => i !== interest)
+        : [...prev, interest];
       localStorage.setItem("userInterests", JSON.stringify(updatedInterests));
       return updatedInterests;
     });
@@ -83,9 +70,9 @@ const Onboarding = ({ setHasCompletedOnboarding }) => {
 
   return (
     <>
-      <h1 className="text-4xl font-bold mt-3">Welcome, {name || "Guest"}!</h1>
+      <h1 className="text-4xl font-bold mt-3">Welcome!</h1>
       <br />
-      <h2>Let's set up your account!</h2>
+      <h2>Let's set up your account! You <strong>must</strong> enter your name.</h2>
       <br />
       <div className="space-y-6">
         <div>
@@ -102,7 +89,7 @@ const Onboarding = ({ setHasCompletedOnboarding }) => {
           <Input
             placeholder="Enter your previous location"
             value={location}
-            onChange={handleLocationChange}
+            onChange={(e) => setLocation(e.target.value)}
           />
         </div>
 
@@ -151,10 +138,17 @@ const Onboarding = ({ setHasCompletedOnboarding }) => {
           </div>
         </div>
 
+        <br />
+        <h2>This information can be updated later in settings.</h2>
+
         <div className="mt-auto flex justify-center">
           <Button
             onClick={handleFinishOnboarding}
-            style={{ backgroundColor: "#EADAFF", color: "#000" }}
+            disabled={!name.trim()} // Disable button if name is empty
+            style={{
+              backgroundColor: name.trim() ? "#EADAFF" : "#ccc",
+              color: name.trim() ? "#000" : "#666",
+            }}
           >
             Submit
           </Button>
