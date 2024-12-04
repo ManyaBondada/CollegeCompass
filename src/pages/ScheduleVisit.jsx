@@ -177,10 +177,12 @@ const ScheduleVisit = () => {
             <p>Email Address: {emailAddress}</p>
           )}
           <p style={{ marginTop: '20px' }}>
-            Closing this message will redirect you back to the previous page.
+            Closing this message will redirect you back to the grocery tasks page.
           </p>
           <Button
             auto
+            as="a"
+            href="/home/grocery-shopping"
             color="primary"
             onClick={closePopup}
             style={{

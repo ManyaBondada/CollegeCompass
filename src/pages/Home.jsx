@@ -47,10 +47,10 @@ const Home = () => {
   return (
     <>
       <h1 className="text-4xl font-bold mt-3">
-        Welcome, {userName || 'Guest'}
+        Welcome, {userName}
       </h1>
       <br />
-      <h2>Here are your tasks:</h2>
+      <h2>These tasks will help you learn more about the DFW area! Feel free to complete these tasks as many times as needed in any order.</h2>
       <br />
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
         {tasks.map((task) => {
