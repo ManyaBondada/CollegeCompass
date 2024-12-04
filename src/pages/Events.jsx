@@ -46,7 +46,7 @@ const Events = () => {
       alert('Please enter a valid 5-digit zip code. Example: 75080');
       return;
     }
-    localStorage.setItem("eventsTaskCompleted", "true");
+    
 
     // Navigate to the events near me page
     navigate(`/events/events-near-me?cultures=${selectedCultures.join(',')}`);

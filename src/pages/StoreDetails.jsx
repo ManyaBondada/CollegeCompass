@@ -67,31 +67,31 @@ const StoreDetails = () => {
       <h1 className="text-4xl font-bold">{store.name}</h1>
       <br />
 
-      <h2>{store.address}</h2>
-      <div style={{ marginTop: '20px' }}>
+      <h2 style={{ fontSize: "20px" }}>{store.address}</h2>
+      <div style={{ marginTop: "20px", fontSize: "18px" }}>
         <p>{store.distance}</p>
         <p>{store.hours}</p>
         <p>{store.services}</p>
         <p>{store.phone}</p>
       </div>
       <br />
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Button
           auto
           as="a"
           href="/bus-schedule"
-          style={{ backgroundColor: '#EADAFF', color: '#000' }}
+          style={{ backgroundColor: "#EADAFF", color: "#000" }}
         >
           Check Bus Schedule
         </Button>
       </div>
       <br />
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+      <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
         {/* Updated Select Store button */}
         <Button
           auto
           onClick={handleSelectStore}
-          style={{ backgroundColor: '#EADAFF', color: '#000' }}
+          style={{ backgroundColor: "#EADAFF", color: "#000" }}
         >
           Find Other Stores
         </Button>
@@ -101,9 +101,9 @@ const StoreDetails = () => {
           as="a"
           href="/home/grocery-shopping"
           onClick={handleSelectStore}
-          style={{ backgroundColor: '#EADAFF', color: '#000' }}
+          style={{ backgroundColor: "#EADAFF", color: "#000" }}
         >
-         Return to Grocery Tasks
+          Return to Grocery Tasks
         </Button>
       </div>
       <br></br>

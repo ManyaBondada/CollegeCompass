@@ -130,7 +130,10 @@ const Settings = () => {
       <BackButton />
       <h1 className="text-4xl font-bold">Settings</h1>
       <br />
-      <h2>Edit onboarding information here. Your changes will be automatically saved. </h2>
+      <h2>
+        Edit onboarding information here. Your changes will be automatically
+        saved.{" "}
+      </h2>
       <br />
 
       <div className="space-y-6">
@@ -197,7 +200,7 @@ const Settings = () => {
           </div>
         </div>
 
-        <div style={{ marginTop: "20px" }}>
+        <div style={{ marginTop: "40px" }}>
           <Button
             auto
             onClick={handleViewRegisteredEvents}
@@ -227,10 +230,7 @@ const Settings = () => {
           </div>
         )}
 
-      <br/>
-      <br/>
-
-      <div>
+        <div style={{ marginTop: "30px" }}>
           <Button
             auto
             style={{
