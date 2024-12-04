@@ -48,7 +48,11 @@ function App() {
             </nav>
           )}
 
-          <div className="flex-grow p-4">
+          <div
+            className={`flex-grow p-4 ${
+              hasCompletedOnboarding ? "pb-[64px]" : ""
+            }`}
+          >
             <Routes>
               <Route
                 path="/"
