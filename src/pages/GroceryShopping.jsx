@@ -6,108 +6,93 @@ import BackButton from './BackButton';
 import { Link } from 'react-router-dom';
 
 const GroceryShopping = () => {
-  const [checkedSteps, setCheckedSteps] = useState(() => {
-    return JSON.parse(localStorage.getItem('groceryShoppingSteps')) || [];
-  });
+  const [checkedSteps, setCheckedSteps] = useState([])
+
+  useEffect(() => {
+    // Retrieve checked steps from local storage
+    const temp = JSON.parse(localStorage.getItem('groceryShoppingSteps')) || [];
+    setCheckedSteps(temp);
+  }, []);
 
   const steps = [
     {
       value: 'make-grocery-list',
       label: 'Make Grocery List',
+      title: "Subtask 1: Make a Grocery List",
+      description: "Plan ahead and list down all the essentials you need 📝",
       route: '/home/grocery-shopping/make-grocery-list',
     },
     {
       value: 'find-stores',
       label: 'Find Stores Near Me',
+      title: "Subtask 2: Find Stores Near Me",
+      description: "Discover the best stores around for your grocery needs 🛒",
       route: '/home/grocery-shopping/find-stores',
     },
     {
       value: 'schedule-visit',
       label: 'Schedule Visit',
+      title: "Subtask 3: Schedule a Visit",
+      description: "Set aside some time that works best for you to go shopping ⏰",
       route: '/home/grocery-shopping/schedule-visit',
     },
   ];
-
-  // Update checkedSteps whenever localStorage changes
-  useEffect(() => {
-    const updateCheckedSteps = () => {
-      const storedCheckedSteps =
-        JSON.parse(localStorage.getItem('groceryShoppingSteps')) || [];
-      if (JSON.stringify(checkedSteps) !== JSON.stringify(storedCheckedSteps)) {
-        setCheckedSteps(storedCheckedSteps);
-      }
-    };
-
-    // Call the function once to initialize
-    updateCheckedSteps();
-
-    // Set up an interval to check for changes every second
-    const intervalId = setInterval(updateCheckedSteps, 1000);
-
-    // Clean up the interval on component unmount
-    return () => clearInterval(intervalId);
-  }, [checkedSteps]);
-
-  // Update main task completion status whenever checkedSteps changes
-  useEffect(() => {
-    // Update main task completion status
-    const allStepsCompleted = steps.length === checkedSteps.length;
-
-    // Retrieve tasks from localStorage
-    let tasks = JSON.parse(localStorage.getItem('tasks'));
-
-    if (tasks && Array.isArray(tasks)) {
-      // Update the specific task's completion status
-      const updatedTasks = tasks.map((task) =>
-        task.id === 1 // Use task ID to identify the task
-          ? { ...task, completed: allStepsCompleted }
-          : task
-      );
-
-      // Save updated tasks back to localStorage
-      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-    } else {
-      // Handle the case where tasks are not found
-      console.error('Tasks not found in localStorage. Cannot update task status.');
-    }
-  }, [checkedSteps]);
 
   return (
     <>
       <BackButton />
       <h1 className="text-4xl font-bold">Grocery Shopping</h1>
       <br />
-      <h2>Steps to Complete</h2>
-      <br />
-      {steps.map((step) => (
-        <div
-          key={step.value}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginBottom: '10px',
-          }}
-        >
-          <Checkbox
-            isSelected={checkedSteps.includes(step.value)}
-            isDisabled // Disable manual checking
-            style={{ marginRight: '10px' }}
-          />
-          <span>{step.label}</span>
-          <Link to={step.route} style={{ marginLeft: '8px' }}>
-            <Button
-              auto
-              color="secondary"
+      <h2>Love to cook? Let's get the ingredients! Feel free to complete these subtasks as many times as needed in any order.</h2>
+      <br/>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        {steps.map((step) => {
+          const isCompleted = checkedSteps.includes(step.value);
+  
+          // Add the return statement here
+          return (
+            <div
+              key={step.value}
               style={{
-                backgroundColor: '#EADAFF',
-                color: '#000',
+                padding: '15px',
+                border: '1px solid #ccc',
+                borderRadius: '8px',
+                backgroundColor: isCompleted ? '#d3ffd3' : '#f9f9f9',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
-              Go
-            </Button>
-          </Link>
-        </div>
-      ))}
+              <p
+                style={{
+                  fontWeight: 'bold',
+                  textDecoration: isCompleted ? 'line-through' : 'none',
+                }}
+              >
+                {step.label}
+              </p>
+              <p>{step.description}</p>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '100%',
+                }}
+              >
+                <Link to={step.route} style={{ textDecoration: 'none' }}>
+                  <Button
+                    style={{
+                      backgroundColor: '#EADAFF',
+                      color: '#000',
+                    }}
+                  >
+                    {isCompleted ? 'View' : 'Start'}
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 };

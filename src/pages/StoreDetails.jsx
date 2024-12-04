@@ -58,7 +58,7 @@ const StoreDetails = () => {
     }
 
     // Navigate back to the Grocery Shopping page
-    navigate('/home/grocery-shopping');
+    navigate('/home/grocery-shopping/find-stores');
   };
 
   return (
@@ -75,7 +75,7 @@ const StoreDetails = () => {
         <p>{store.phone}</p>
       </div>
       <br />
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button
           auto
           as="a"
@@ -86,14 +86,24 @@ const StoreDetails = () => {
         </Button>
       </div>
       <br />
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
         {/* Updated Select Store button */}
         <Button
           auto
           onClick={handleSelectStore}
           style={{ backgroundColor: '#EADAFF', color: '#000' }}
         >
-          Select Store
+          Find Other Stores
+        </Button>
+
+        <Button
+          auto
+          as="a"
+          href="/home/grocery-shopping"
+          onClick={handleSelectStore}
+          style={{ backgroundColor: '#EADAFF', color: '#000' }}
+        >
+         Return to Grocery Tasks
         </Button>
       </div>
       <br></br>
