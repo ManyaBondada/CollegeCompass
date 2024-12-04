@@ -4,29 +4,47 @@ import BackButton from "./BackButton";
 import { Input } from "@nextui-org/input";
 import { Slider } from "@nextui-org/slider";
 import { DateRangePicker } from "@nextui-org/date-picker";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const StoresNearMe = () => {
-  // Array of store data
   const stores = [
-    { id: 1, name: "Target", address: "16731 Coit Rd, Dallas, TX 75248" },
-    { id: 2, name: "Walmart Supercenter", address: "425 Coit Rd, Plano, TX 75075" },
-    { id: 3, name: "Kroger", address: "160 N Coit Rd, Richardson, TX 75080" }
+    { id: 1, name: "Target", address: "16731 Coit Rd, Dallas, TX 75248", distance: 2.0 },
+    { id: 2, name: "Walmart Supercenter", address: "425 Coit Rd, Plano, TX 75075", distance: 2.4 },
+    { id: 3, name: "Kroger", address: "160 N Coit Rd, Richardson, TX 75080", distance: 3.7 },
   ];
+
 
   const [zipCode, setZipCode] = useState("");
   const [showResults, setShowResults] = useState(false);
+
+  useEffect(() => {
+    const savedZipCode = localStorage.getItem("zipCode"); 
+    const savedShowResults = JSON.parse(localStorage.getItem("showResults")); 
+
+    if (savedZipCode) setZipCode(savedZipCode); 
+    if (savedShowResults) setShowResults(savedShowResults); 
+
+    return () => {
+      localStorage.removeItem("zipCode");
+      localStorage.removeItem("showResults");
+    }
+
+  }, []);
 
   // Checks whether user zip code input is valid
   const isValidZipCode = (code) => /^\d{5}$/.test(code);
 
   const handleSubmit = () => {
     if (isValidZipCode(zipCode)) {
+      localStorage.setItem("zipCode", zipCode);
+      localStorage.setItem("showResults", true);
       setShowResults(true);
     } else {
       alert("Please enter a valid 5-digit zip code. Example: 75080");
     }
   };
+
+
 
 
   return (
@@ -75,7 +93,7 @@ const StoresNearMe = () => {
               <Button
                 color="secondary"
                 style={{
-                  height: "85px",
+                  height: "auto",
                   width: "350px",
                   backgroundColor: "#EADAFF",
                   color: "#000",
@@ -94,6 +112,9 @@ const StoresNearMe = () => {
                 <span>{store.name}</span>
                 <span style={{ fontSize: "15px", marginTop: "5px" }}>
                   {store.address}
+                </span>
+                <span style={{ fontSize: "15px", marginTop: "3px"}}>
+                  Distance: {store.distance} miles
                 </span>
               </Button>
             </Link>
