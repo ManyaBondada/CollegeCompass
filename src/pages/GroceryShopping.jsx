@@ -49,43 +49,44 @@ const GroceryShopping = () => {
         {steps.map((step) => {
           const isCompleted = checkedSteps.includes(step.value);
   
-          // Add the return statement here
           return (
             <div
               key={step.value}
               style={{
-                padding: '15px',
-                border: '1px solid #ccc',
-                borderRadius: '8px',
-                backgroundColor: isCompleted ? '#d3ffd3' : '#f9f9f9',
-                display: 'flex',
-                flexDirection: 'column',
+                padding: "15px",
+                border: "1px solid #ccc",
+                borderRadius: "8px",
+                backgroundColor: isCompleted ? "#d3ffd3" : "#f9f9f9",
+                display: "flex",
+                flexDirection: "column",
               }}
             >
               <p
                 style={{
-                  fontWeight: 'bold',
-                  textDecoration: isCompleted ? 'line-through' : 'none',
+                  fontWeight: "bold",
+                  textDecoration: isCompleted ? "line-through" : "none",
                 }}
               >
                 {step.label}
               </p>
               <p>{step.description}</p>
+
               <div
                 style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  width: '100%',
+                  marginTop: "10px",
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "100%",
                 }}
               >
-                <Link to={step.route} style={{ textDecoration: 'none' }}>
+                <Link to={step.route} style={{ textDecoration: "none" }}>
                   <Button
                     style={{
-                      backgroundColor: '#EADAFF',
-                      color: '#000',
+                      backgroundColor: "#EADAFF",
+                      color: "#000",
                     }}
                   >
-                    {isCompleted ? 'View' : 'Start'}
+                    {isCompleted ? "View" : "Start"}
                   </Button>
                 </Link>
               </div>
