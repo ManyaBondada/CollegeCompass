@@ -176,6 +176,9 @@ const eventData = {
       console.log("Current events in localStorage:", JSON.parse(localStorage.getItem("events")));
       // Toggle the sign-up state
       setIsSignedUp(!isSignedUp);
+      if(!isSignedUp){
+        localStorage.setItem("eventsTaskCompleted", "true");
+      } 
     };
   
     if (!event) {
