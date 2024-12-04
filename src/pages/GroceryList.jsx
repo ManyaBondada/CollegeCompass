@@ -20,8 +20,11 @@ const GroceryList = () => {
 
   // Save grocery items and checked items to localStorage whenever they change
   useEffect(() => {
-    localStorage.setItem('groceryItems', JSON.stringify(groceryItems));
-    localStorage.setItem('checkedItems', JSON.stringify(checkedItems));
+    if (groceryItems.length > 0 || checkedItems.length > 0) {
+      console.log('Saving to localStorage:', groceryItems, checkedItems);
+      localStorage.setItem("groceryItems", JSON.stringify(groceryItems));
+      localStorage.setItem("checkedItems", JSON.stringify(checkedItems));
+  }
   }, [groceryItems, checkedItems]);
 
   // Handle adding a new item to the grocery list
